@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _06022024
+namespace ogren
 {
     internal class Program
     {
-       static void Main(string[] args)
+        static void Main(string[] args)
         {
             #region WriteLine
             // WriteLine yanına yazar
@@ -194,12 +194,12 @@ namespace _06022024
 
             // kullanıcıdan 3 adet sayı isteyelim 3 adet sayının ortalamasını ekrana yazdır
             Console.Write("1. Sayıyı Gir: ");
-            double sayi1 = int.Parse(Console.ReadLine());
+            int sayi1 = int.Parse(Console.ReadLine());
             Console.Write("2. Sayıyı Gir: ");
-            double sayi2 = int.Parse(Console.ReadLine());
+            int sayi2 = int.Parse(Console.ReadLine());
             Console.Write("3. Sayıyı Gir: ");
-            double sayi3 = int.Parse(Console.ReadLine());
-            double sonuc = ((sayi1 + sayi2 + sayi3) / 3);
+            int sayi3 = int.Parse(Console.ReadLine());
+            double sonuc = ((double) (sayi1 + sayi2 + sayi3) / 3);
             Console.WriteLine("Sayıların Ortalaması: " + sonuc);
             */
             #endregion
