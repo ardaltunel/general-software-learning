@@ -194,11 +194,11 @@ namespace _06022024
 
             // kullanıcıdan 3 adet sayı isteyelim 3 adet sayının ortalamasını ekrana yazdır
             Console.Write("1. Sayıyı Gir: ");
-            int sayi1 = int.Parse(Console.ReadLine());
+            double sayi1 = int.Parse(Console.ReadLine());
             Console.Write("2. Sayıyı Gir: ");
-            int sayi2 = int.Parse(Console.ReadLine());
+            double sayi2 = int.Parse(Console.ReadLine());
             Console.Write("3. Sayıyı Gir: ");
-            int sayi3 = int.Parse(Console.ReadLine());
+            double sayi3 = int.Parse(Console.ReadLine());
             double sonuc = ((sayi1 + sayi2 + sayi3) / 3);
             Console.WriteLine("Sayıların Ortalaması: " + sonuc);
             */
