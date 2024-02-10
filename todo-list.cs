@@ -1,16 +1,26 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Security.Principal;
 
 namespace todo_list
 {
     internal class Program
     {
         static List<string> tasks = new List<string>();
-        static string filePath = "tasks.txt";
+        static string filePath = @"C:\todolist.txt";
 
         static void Main(string[] args)
         {
+            if (!IsRunningAsAdmin())
+            {
+                Console.WriteLine("Lütfen uygulamayı yönetici olarak başlatın!");
+                Console.Write("Kapatmak için bir tuşa basın...");
+                Console.ReadKey();
+                return;
+            }
+
             Console.WriteLine("Basit ToDo List Uygulamasına Hoş Geldiniz!");
 
             // Önceki görevleri yükle
@@ -136,6 +146,16 @@ namespace todo_list
         {
             Console.WriteLine("Uygulamadan çıkılıyor...");
             SaveTasks(); // Görevleri kaydet
+        }
+
+        // Kullanıcının uygulamayı yönetici olarak çalıştırıp çalıştırmadığını kontrol etmek için
+        static bool IsRunningAsAdmin()
+        {
+            using (WindowsIdentity identity = WindowsIdentity.GetCurrent())
+            {
+                WindowsPrincipal principal = new WindowsPrincipal(identity);
+                return principal.IsInRole(WindowsBuiltInRole.Administrator);
+            }
         }
     }
 }
