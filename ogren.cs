@@ -204,6 +204,60 @@ namespace ogren
             */
             #endregion
 
+            #region If Else - Else If
+            // if else = else if
+            // karar verme veya koşul oluşturmak
+            // belirttiğim koşul yerine geliyorsa şunları gelmiyorsa bunları yap demektir
+            /*
+            if (true) // parantez içine koşul belirtilir
+            {
+                // koşul ture ise buradaki komut satırları işleme alınır
+            }
+
+            else if (true) // parantez içine koşul belirtilir
+            {
+                // koşul ture ise buradaki komut satırları işleme alınır
+            }
+            
+            else // koşul belirtilmez
+            {
+                // koşullar uyuşmuyor ise buradaki komut satırları işleme alınır
+            }
+
+            // örnek
+            int sayi1 = 3, sayi2 = 5;
+            if (sayi1 > sayi2) {
+                Console.WriteLine("1. Sayı Büyüktür");
+            } else if (sayi1 < sayi2) {
+                Console.WriteLine("1. Sayi Küçüktür");
+            } else {
+                Console.WriteLine("Sayılar Eşittir");
+            }
+
+            // 1 sayı talep edin tek ise sayı tektir çift ise sayı çift olarak konsola yazsın
+            Console.Write("Bir Sayı Giriniz: ");
+            int sayi = int.Parse(Console.ReadLine());
+            if (sayi % 2 == 0) {
+                Console.WriteLine("Girilen Sayı Çifttir");
+            } else if (sayi % 2 == 1) {
+                Console.WriteLine("Girilen Sayı Tektir");
+            } else {
+                Console.WriteLine("Beklenmedik Bir Hata Oldu");
+            }
+
+            // kullanıcıdan 2 sayı isteyelim girilen sayıların toplamı 3'e tam bölünüyorsa tam bölünüyor yazacak
+            Console.WriteLine("Lütfen 2 sayı giriniz");
+            Console.Write("İlk Sayı: ");
+            int sayi1 = int.Parse(Console.ReadLine());
+            Console.Write("İkinci Sayı: ");
+            int sayi2 = int.Parse(Console.ReadLine());
+            if ((sayi1 + sayi2) % 3 == 0) {
+                Console.WriteLine("Tam Bölünüyor");
+            } else {
+                Console.WriteLine("Tam Bölünmüyor");
+            }
+            */
+            #endregion
             Console.ReadKey();
         }
     }
