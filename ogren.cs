@@ -253,11 +253,160 @@ namespace ogren
             int sayi2 = int.Parse(Console.ReadLine());
             if ((sayi1 + sayi2) % 3 == 0) {
                 Console.WriteLine("Tam Bölünüyor");
-            } else {
+            } else if (toplam % 3 == 1 || toplam % 3 == 2){
                 Console.WriteLine("Tam Bölünmüyor");
+            }
+
+            // kullanıcıdan 3 sayı alın sayıların ortalaması 50 veya üzeri ise geçti kaldı ise kaldı mesajını döndürün
+            Console.WriteLine("Lütfen 3 sayı giriniz");
+            Console.Write("İlk Sayı: ");
+            int sayi1 = int.Parse(Console.ReadLine());
+            Console.Write("İkinci Sayı: ");
+            int sayi2 = int.Parse(Console.ReadLine());
+            Console.Write("Üçüncü Sayı: ");
+            int sayi3 = int.Parse(Console.ReadLine());
+            double sonuc = (double) sayi1 + sayi2 + sayi3;
+            if (sonuc / 3 >= 50)
+            {
+                Console.WriteLine("Geçti");
+            }
+            else
+            {
+                Console.WriteLine("Kaldı");
             }
             */
             #endregion
+
+            #region While Döngüsü
+            // while program içerisinde bazı durumlarda belilri komut satırlarını defalarca kez kullanmak isteyebiliriz
+            // bu gibi durumlarda döngü mekanizmaları devereye girer
+            // kaç defa döneci belli olmayan durumlarda kullanılır
+            // koşul alanı vardır bu koşul ture olrak dönüyor ise çalışacaktır
+            // syntax yazım kuralları
+            /*
+            while (kosul)
+            {
+                //komut satırı
+            }
+            */
+
+            // 1 den 10 a kadar sayıları while ile yazdırıalım
+            /*
+            int sayac = 1, hedef = 10;
+            while (sayac <= hedef)
+            {
+                Console.WriteLine(sayac);
+                sayac++;
+            }
+            */
+
+            // kullanıcıdan 2 adet sayı telep edeilim
+            // 1. sayı ile 2. sayı aradınsaki sayıları ekranı yazdıralım
+            /*
+            Console.WriteLine("2 Sayı Giriniz");
+            Console.Write("İlk Sayı: ");
+            int sayi1 = int.Parse(Console.ReadLine());
+            Console.Write("İkinci Sayı: ");
+            int sayi2 = int.Parse(Console.ReadLine());
+            while (sayi1 <= sayi2)
+            {
+                Console.WriteLine(sayi1);
+                sayi1++;
+            }
+            */
+
+            // 1- 100 arasındaki sayıları 2 ye tam bölüneneleri ekrana yazdıralım
+            /*
+            int sayi1 = 1, sayi2 = 100;
+            while (sayi1 <= sayi2)
+            {
+                if (sayi1 % 2 == 0) {
+                    Console.WriteLine(sayi1);   
+                }
+                sayi1++;
+            }
+            */
+
+            // 1 - 100 arasındaki tek sayıların toplamını ekrana yazdır 
+            /*
+            int sayi1 = 1, sayi2 = 100;
+            int toplam = 0;
+            while (sayi1 <= sayi2)
+            {
+                if (sayi1 % 2 == 1)
+                {
+                    toplam += sayi1;
+                    // toplam = toplam + sayi1; (daha kolay yazabilmek için üsttekini kullanıyoruz)
+                }
+                sayi1++;
+            }
+            Console.Write("Sayıların Toplamı: " + toplam);
+            */
+
+            // kullanıcıdan 2 adet sayı alalım
+            // 1. sayıdan 2. sayıya kadar olan sayıların toplamını ve ortalamasını ekrana yazıdıralım
+            // bu yapmak için 1. yöntem
+            /*
+            Console.WriteLine("2 Sayı Giriniz");
+            Console.Write("İlk Sayı: ");
+            int sayi1 = int.Parse(Console.ReadLine());
+            Console.Write("İkinci Sayı: ");
+            int sayi2 = int.Parse(Console.ReadLine());
+            int toplam = 0;
+            int sayac = 0;
+            if (sayi1 > sayi2) {
+                while (sayi1 >= sayi2) {
+                    toplam += sayi2;
+                    sayi2++;
+                    sayac++;
+                }
+                double ortalama = (double)toplam / sayac;
+                Console.WriteLine("Sayıların Toplamı: " + toplam);
+                Console.WriteLine("Sayıların Ortalaması: " + ortalama);
+            } else if (sayi1 < sayi2) {
+                while (sayi1 <= sayi2) {
+                    toplam += sayi1;
+                    sayi1++;
+                    sayac++;
+                }
+                double ortalama = (double)toplam / sayac;
+                Console.WriteLine("Sayıların Toplamı: " + toplam);
+                Console.WriteLine("Sayıların Ortalaması: " + ortalama);
+            } else {
+                Console.WriteLine("Sayılar Birbirine Eşittir");
+            }
+            */
+
+            // bu yapmak için 2. yöntem
+            /*
+            int sayi1, sayi2, toplam = 0, sayac = 0;
+            double ortalama;
+            Console.WriteLine("2 Sayı Giriniz");
+            Console.Write("İlk Sayı: ");
+            int sayi1 = int.Parse(Console.ReadLine());
+            Console.Write("İkinci Sayı: ");
+            int sayi2 = int.Parse(Console.ReadLine());
+            if (sayi1 == sayi2) {
+                Console.WriteLine("Sayılar Birbirine Eşittir");
+            } else {
+                if (sayi1>sayi2) {
+                    int gecici = sayi1;
+                    sayi1 = sayi2;
+                    sayi2 = gecici;
+                }
+
+                while (sayi1<sayi2) {
+                    toplam += sayi1;
+                    sayi1++;
+                    sayac++;
+                }
+                Console.WriteLine("Sayıların Toplamı: " + toplam);
+                ortalama = (double) toplam / sayac;
+                Console.WriteLine("Sayıların Ortalaması: " + ortalama);
+            }
+            */
+            #endregion
+
             Console.ReadKey();
         }
     }
