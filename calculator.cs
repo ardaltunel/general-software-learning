@@ -71,7 +71,7 @@ namespace calculator
                 Console.WriteLine($"Sonuç: {result}");
 
                 Console.Write("Yeni bir işlem yapmak için herhangi bir tuşa basın, çıkmak için '5' tuşuna basın: ");
-            } while (Console.ReadLine() != "5");
+            } while (Console.ReadLine() != "55");
         }
     }
 }
