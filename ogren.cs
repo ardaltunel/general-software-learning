@@ -342,7 +342,9 @@ namespace ogren
             }
             Console.Write("Sayıların Toplamı: " + toplam);
             */
+            #endregion
 
+            #region Örnek (1. sayıdan 2. sayıya kadar olan sayıların toplamını ve ortalamasını ekrana yazdırın)
             // kullanıcıdan 2 adet sayı alalım
             // 1. sayıdan 2. sayıya kadar olan sayıların toplamını ve ortalamasını ekrana yazıdıralım
             // bu yapmak için 1. yöntem
@@ -383,9 +385,9 @@ namespace ogren
             double ortalama;
             Console.WriteLine("2 Sayı Giriniz");
             Console.Write("İlk Sayı: ");
-            int sayi1 = int.Parse(Console.ReadLine());
+            sayi1 = int.Parse(Console.ReadLine());
             Console.Write("İkinci Sayı: ");
-            int sayi2 = int.Parse(Console.ReadLine());
+            sayi2 = int.Parse(Console.ReadLine());
             if (sayi1 == sayi2) {
                 Console.WriteLine("Sayılar Birbirine Eşittir");
             } else {
