@@ -1,11 +1,3 @@
-# Nasıl kurulur?
-- `Visual Studio 2022` programını yükleyin (en son sürümü indirin)
-- Bir proje oluşturmak için `Yeni Proje Oluştur` > `Konsol Uygulaması (.NET Framework)`
-- Kodunuzu yazmaya ve öğrenmeye başlayın
-- [Tıkla](https://github.com/ardaltunel/c-sharp-ogren/releases) ve programları `.exe` olarak görüntüle
-
-<br>
-
 # How to setup?
 - Install to `Visual Studio 2022` (download the latest version)
 - To create a project `Create New Project` > `Console Application (.NET Framework)`
