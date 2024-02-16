@@ -6,7 +6,7 @@ using System;
 class Program
 {
     private static readonly HttpClient _httpClient = new HttpClient();
-    private const string OmdbApiKey = "252f5086";
+    private const string OmdbApiKey = "YOUR-API-KEY";
 
     static async Task Main()
     {
