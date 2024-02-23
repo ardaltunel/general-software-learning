@@ -10,7 +10,8 @@ namespace odev
     {
         static void Main(string[] args)
         {
-            // Ödev 1
+            #region Ödev 1
+
             #region 1). Girilen sayının tek ya da çift olduğunu gösteren örneği oluşturunuz
             /*
             Console.Write("Bir Sayı Giriniz: ");
@@ -218,8 +219,10 @@ namespace odev
             */
             #endregion
 
+            #endregion
 
-            // Ödev 2
+            #region Ödev 2
+
             #region 1-) Kullanıcıdan 1 adet sayı talep edin, kullanıcı 5 in katı bir sayı girmezse program kullanıcıdan tekrar tekrar sayı istesin.
             /*
             int kullaniciSayi;
@@ -349,8 +352,10 @@ namespace odev
             */
             #endregion
 
+            #endregion
 
-            // Ödev 3
+            #region Ödev 3
+
             #region 1-) Kullanıcıdan 5 adet meyve ismi girmesini isteyin ve bunları bir dizi içerisine kayıt edin .Kullanıcı 5 adet meyveyi girdikten sonra kullanıcıdan tekrar meyve ismi girmesini isteyin  eğer ki girdiği meyve ismi dizinin içerisinde kayıtlı ise 'Sepette .... meyvesi vardır ' kayıtlı değilse 'Sepette ... meyvesi yoktu' şeklinde mesaj döndürün
             // Yöntem 1 (çok doğru bir yöntem değil)
             /*
@@ -495,6 +500,7 @@ namespace odev
             */
             #endregion
 
+            #endregion
 
             Console.ReadKey();
         }
