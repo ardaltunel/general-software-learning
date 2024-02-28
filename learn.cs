@@ -409,6 +409,132 @@ namespace ogren
             */
             #endregion
 
+            #region For
+            // döngü yapıları adında belli olduğu gibi koşul doğruluğunu sağladığı sürece kendi bloğu içerisindeki komut satırlarını işleyen mekanizmadır
+            // uygulama for döngüsüne girdiğine 1.ifade çalışır bu aşamada değişken tanımlama ve değişkene değer atama işlemleri uygulanır sadece ilk döngüde çalışır ve daha sonra çalışmaz
+            // 1'den 10'a kadar olan sayıları ekrana yazdıralım
+            /*
+            for (int i = 1; i <= 10; i++)
+            {
+                Console.WriteLine(i);
+            }
+            */
+
+            // 1 ile 100 arasındaki sayıları ekrana yan yana yazdıralım
+            /*
+            for (int i = 1; i <= 100; i++)
+            {
+                Console.Write(i + " ");
+            }
+            */
+
+            // 1 ile 100 arasındaki sayılardan çift olanları ekrana yazdıralım
+            /*
+            for (int i = 2; i <= 100; i += 2)
+            {
+                Console.Write(i + " ");
+            }
+            */
+
+            // 1 den başlayıp kullanıcının girmiş olduğu sayıya kadar olan sayıların toplamını ve ortalamasını yazdıralım
+            /*
+            int toplam = 0;
+            int sayi;
+            do
+            {
+                Console.Write("Bir Sayı Giriniz : ");
+                sayi = int.Parse(Console.ReadLine());
+                if (sayi <= 1)
+                {
+                    Console.WriteLine("Lütfen 1'den büyük bir sayı giriniz");
+                }
+            } while (sayi <= 1);
+
+            for (int i = 1; i <= sayi; i++)
+            {
+                toplam += i;
+            }
+            Console.WriteLine("Sayıların Toplamı = " + toplam);
+            Console.WriteLine("Sayıların Ortalaması = " + (double)toplam / sayi);
+            */
+
+            // A'dan başlayıp Z'ye kadar olan harfleri yazdıralım
+            /*
+            for (char karakter = 'a'; karakter <= 'z'; karakter++)
+            {
+                Console.Write(karakter + " ");
+                if (karakter == 'g')
+                {
+                    Console.Write("ğ ");
+                }
+            }
+            Console.WriteLine();
+            for (char i = 'A'; i <= 'Z'; i++)
+            {
+                Console.Write(i + " ");
+
+            }
+            */
+
+            // iç içe for döngüsü kullanarak çarpım tablosu yazdıralım
+            /*
+            for (int i = 1; i <= 10; i++)
+            {
+                for (int j = 0; j <= 10; j++)
+                {
+                    Console.WriteLine(i + "x" + j + " = " + (i * j));
+                }
+                Console.WriteLine("--------------");
+            }
+            */
+            #endregion
+
+            #region For Ile Array Oluşturma
+            // for döngüsü ile daha önceden oluşturulmuş array leri doldurma
+            /*
+            int[] sayilar = new int[5];
+            Console.WriteLine("5 Adet Sayı Girilecek ");
+            Console.WriteLine("----------------------");
+            for (int i = 0; i < sayilar.Length; i++)
+            {
+                Console.Write((i + 1) + ". Sayıyı Giriniz:");
+                sayilar[i] = int.Parse(Console.ReadLine());
+
+            }
+            Console.WriteLine();
+            Console.WriteLine("Girdiğiniz Sayılar");
+            Console.WriteLine("------------------");
+            for (int i = 0; i < sayilar.Length; i++)
+            {
+                Console.Write(sayilar[i] + " ");
+            }
+            */
+
+            // kullanıcıya kaç adet sayı girmek istediğini soralım
+            // girmiş olduğu sayıların toplamını ve ortalamasını gösterelim
+            // for döngüsü ve array yapısı kullanılacak
+            /*
+            int toplam = 0;
+            int adet;
+            Console.Write("Kaç adet sayı girilecek ? ");
+            adet = int.Parse(Console.ReadLine());
+            int[] sayilar = new int[adet];
+            for (int i = 0; i < sayilar.Length; i++)
+            {
+                Console.Write((i + 1) + ".Sayıyı Giriniz : ");
+                sayilar[i] = int.Parse(Console.ReadLine());
+                // toplam += sayilar[i];
+
+            }
+            for (int x = 0; x < sayilar.Length; x++)
+            {
+                toplam += sayilar[x];
+            }
+            Console.WriteLine("Sayıların Toplamı = " + toplam);
+            Console.WriteLine("Sayıların Ortalaması = " + (double)toplam / sayilar.Length);
+            */
+            #endregion
+
             Console.ReadKey();
         }
     }
