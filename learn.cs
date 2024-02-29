@@ -921,7 +921,45 @@ namespace ogren
             #region Hazır String Methodlar
             // micrasoftun bize sunmuş olduğu bazı hazır string methodlar bulunmaktadır
             // bu methodlar sayasinde bir takım işlerimizi kolaylaştırabilirsiniz
+            string metin = "Merhaba Dünya";
+            /*
+            Console.WriteLine(metin.Length);
+
+            Console.WriteLine(metin.Replace("Dünya", "Mars"));
+
+            Console.WriteLine(metin.IndexOf("a"));
+            Console.WriteLine(metin.IndexOf("x"));
+
+            Console.WriteLine(metin.LastIndexOf("a"));
+            Console.WriteLine(metin.LastIndexOf("x"));
+
+            Console.WriteLine(metin.ToLower());
+            Console.WriteLine(metin.ToUpper());
+
+            string tMetin = "     Selam     ";
+            Console.WriteLine(tMetin.Trim());
             
+            int arama = metin.LastIndexOf("a");
+            if (arama == -1) {
+                Console.WriteLine("Aradığınız Sonuç Bulunamadı");
+            } else {
+                Console.WriteLine("Aradığınız Sonuç " + arama + ". Indextedir");
+            }
+
+            bool cevap = metin.Contains("Dünya");
+            if (cevap) {
+                Console.WriteLine("Aradığınız Değer Bulundu");
+            } else {
+                Console.WriteLine("Aradığınız Değer Bulunamadı");
+            }
+
+            string isimler = "Ahmet,Methmet,Arda,Ali,Ayşe,Fatma";
+            var isim = isimler.Split(',');
+            foreach (var item in isim)
+            {
+                Console.WriteLine(item);
+            }
+            */
             #endregion
 
             Console.ReadKey();
