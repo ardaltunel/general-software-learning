@@ -502,6 +502,157 @@ namespace odev
 
             #endregion
 
+            #region Ödev 4
+
+            #region 1-) Kullanıcıya kaç adet rastgele sayı üretmek istediğini, üretmek istediği sayıların hangi aralıkta olmasını istediğini sorun. İstediği adette ve istediği aralıkta üretilen rastgele sayıları liste halinde gösteren ve aynı zamanda sayıların toplamını gösteren  uygulamayı yazınız.
+            /*
+            int adet, minAralik, maxAralik;
+            Console.Write("Kaç adet rastgele sayı üretmek istersiniz: ");
+            if (!int.TryParse(Console.ReadLine(), out adet) || adet <= 0) {
+                Console.WriteLine("Geçersiz giriş. Pozitif bir tam sayı giriniz.");
+                return;
+            }
+
+            Console.WriteLine("\nRastgele sayılar hangi aralıkta olsun?");
+            Console.Write("Minimum değeri girin: ");
+            if (!int.TryParse(Console.ReadLine(), out minAralik)) {
+                Console.WriteLine("Geçersiz giriş. Tam sayı giriniz.");
+                return;
+            }
+
+            Console.Write("Maximum değeri girin: ");
+            if (!int.TryParse(Console.ReadLine(), out maxAralik) || maxAralik <= minAralik) {
+                Console.WriteLine("Geçersiz giriş. Minimum değerden büyük bir tam sayı giriniz.");
+                return;
+            }
+
+            Random rastgele = new Random();
+            List<int> rastgeleSayilar = new List<int>();
+            int toplam = 0;
+            for (int i = 0; i < adet; i++) {
+                int sayi = rastgele.Next(minAralik, maxAralik + 1);
+                rastgeleSayilar.Add(sayi);
+                toplam += sayi;
+            }
+
+            Console.Write("\nÜretilen Rastgele Sayılar: ");
+            foreach (var sayi in rastgeleSayilar) {
+                Console.Write(sayi + " ");
+            }
+
+            Console.WriteLine($"\nSayıların Toplamı: {toplam}");
+            */
+            #endregion
+
+            #region 2-) Bir yüz boyama etkinliğine katılacak olan çocukların adedini kullanıcıdan isteyiniz. Girilen adet kadar çocuğun doğum tarihini yazınız. Etkinliğe 4 yaşından küçük ve 13 yaşından büyük çocuk katılamaz. Eğer bu yaş aralığı dışında bir çocuk eklenmeye çalışılırsa kullanıcıya uyarı gösterin. Tüm çocukların yaşları girildiğinde girilen tüm yaşların küçükten büyüğe  sıralamasını gösterin.
+            /*
+            while (true)
+            {
+                Console.Write("Katılacak çocuk sayısını giriniz: ");
+                if (!int.TryParse(Console.ReadLine(), out int cocukAdedi)) {
+                    Console.WriteLine("Hata");
+                    continue;
+                }
+
+                if (cocukAdedi < 0) {
+                    Console.WriteLine("Pozitif bir tam sayı giriniz");
+                    continue;
+                }
+                int[] yaslar = new int[cocukAdedi];
+                for (int i = 0; i < cocukAdedi; i++) {
+                    Console.Write($"{i + 1}. Çocuk doğum yılını giriniz: ");
+                    if (!int.TryParse(Console.ReadLine(), out int dogumYili)) {
+                        Console.WriteLine("Hata");
+                        i--;
+                        continue;
+                    }
+                    int yas = DateTime.Now.Year - dogumYili;
+                    if (yas < 0) {
+                        Console.WriteLine("Hata");
+                        i--;
+                        continue;
+                    }
+
+                    if (yas < 4 || yas >= 13) {
+                        Console.WriteLine("4 yaşından küçük ve 13 yaşından büyük çocuk katılamaz");
+                        i--;
+                        continue;
+                    }
+                    yaslar[i] = yas;
+                }
+                Array.Sort(yaslar);
+                Console.WriteLine("Çocukların Yaşları (Küçükten Büyüğe Sıralı):");
+                foreach (var yas in yaslar) {
+                    Console.Write(yas + " ");
+                }
+                Console.WriteLine("\n");
+            }
+            */
+            #endregion
+
+            #region 3-) Kullanıcıdan 5 adet sayı talep edin. Girilen sayıların ortalaması çift ise "Girilen sayıların ortalaması çifttir", aksi durumda "Girilen sayıların ortalaması tektir" uyarısı gösterelim.
+            /*
+            int adet = 5;
+            int toplam = 0;
+            for (int i = 1; i <= adet; i++) {
+                Console.Write($"Lütfen {i}. sayıyı giriniz: ");
+                if (!int.TryParse(Console.ReadLine(), out int sayi)) {
+                    Console.WriteLine("Hata");
+                    i--;
+                    continue;
+                }
+                toplam += sayi;
+            }
+            double ortalama = (double)toplam / adet;
+            Console.WriteLine($"Girilen sayıların ortalaması: {ortalama}");
+            if (ortalama % 2 == 0) {
+                Console.WriteLine("Girilen sayıların ortalaması çifttir");
+            } else {
+                Console.WriteLine("Girilen sayıların ortalaması tektir");
+            }
+            */
+            #endregion
+
+            #region 4-) Kullanıcıdan , kayıt işlemi için isim , soy isim , kullanıcı adı ve şifre bilgisi isteyin . Eğer ki şifre kısmında isimi veya soy isimi barınıyorsa kullanıcıya "Şifrenizde isim veya soy isminiz bulunmamalıdır" şeklinde mesaj döndürüp tekrardan şifre belirlemesini isteyin.
+            /*
+            Console.Write("İsim: ");
+            string isim = Console.ReadLine();
+            Console.Write("Soyisim: ");
+            string soyisim = Console.ReadLine();
+            Console.Write("Kullanıcı Adı: ");
+            string kullaniciAdi = Console.ReadLine();
+            string sifre;
+            do {
+                Console.Write("Şifre: ");
+                sifre = Console.ReadLine(); 
+                if (sifre.Contains(isim) || sifre.Contains(soyisim)) {
+                    Console.WriteLine("Şifrenizde isim veya soy isminiz bulunmamalıdır. Lütfen başka bir şifre belirleyin.");
+                }
+
+            } while (sifre.Contains(isim) || sifre.Contains(soyisim));
+            Console.WriteLine("Kayıt işlemi başarıyla tamamlandı");
+            */
+            #endregion
+
+            #region 5-) Kullanıcıdan bir cümle girişi ve sayılacak harfi isteyin. Ardından bu cümlede belirtilen harfin kaç kez geçtiğini bulup yazdırın.
+            /*
+            Console.Write("Bir cümle girin: ");
+            string cumle = Console.ReadLine();
+            Console.Write("Sayılacak harfi girin: ");
+            char sayilacakHarf = Convert.ToChar(Console.ReadLine());
+            int sayac = 0;
+
+            foreach (char harf in cumle) {
+                if (harf == sayilacakHarf) {
+                    sayac++;
+                }
+            }
+            Console.WriteLine($"Girilen cümlede '{sayilacakHarf}' harfi {sayac} kez geçiyor.");
+            */
+            #endregion
+
+            #endregion
+
             Console.ReadKey();
         }
     }
