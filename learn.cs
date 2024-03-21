@@ -970,33 +970,6 @@ namespace ogren
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Metodlar.cs:
 /*
 using System;
