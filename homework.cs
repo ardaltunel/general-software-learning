@@ -653,7 +653,7 @@ namespace odev
 
             #endregion
 
-            #region Ödev 5 Program.cs
+            #region Ödev 5 Program.cs:
 
             #region 1-) Kullanıcıdan bir string değer talep edelim Kullanıcı boş bir değer girdiği sürece odeğeri kullanıcıdan tekrar talep edelim kullanıcıdan değer talep etme işlemlerini metod ile yapalım
             /*
