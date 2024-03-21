@@ -653,6 +653,134 @@ namespace odev
 
             #endregion
 
+            #region Ödev 5 Program.cs
+
+            #region 1-) Kullanıcıdan bir string değer talep edelim Kullanıcı boş bir değer girdiği sürece odeğeri kullanıcıdan tekrar talep edelim kullanıcıdan değer talep etme işlemlerini metod ile yapalım
+            /*
+            Metod birinciMetod = new Metod();
+            string deger = birinciMetod.DegerTalepEt();
+            Console.Write("Girilen değer: " + deger);
+            */
+            #endregion
+
+            #region 2-) Kullanıcı tarafından girilen bir sayının faktöriyelini hesaplayan bir program oluşturun. (Kullanıcın girdiği sayının faktöriyelini hesaplayan bir metod oluşturun)
+            /*
+            Console.Write("Faktöriyelini öğrenmek istediğiniz bir sayı giriniz: ");
+            int sayi = int.Parse(Console.ReadLine());
+            Metod ikinciMetod = new Metod();
+            int faktoriyel = ikinciMetod.FaktoriyelHesapla(sayi);
+            Console.WriteLine($"{sayi} sayısının faktöriyeli: {faktoriyel}");
+            */
+            #endregion
+
+            #region 3-) Kullanıcıdan string bir değer alın. Kullanıcının girmiş olduğu değerin içinde kaç tane sesli harf olduğunu hesaplayan bir metod oluşturun. Kullanıcının girmiş olduğu değerde kaç tane sesli harf olduğunu oluşturduğunuz metodu kullanarak yazdırın
+            /*
+            Console.Write("Bir metin girin: ");
+            string metin = Console.ReadLine();
+            Metod ucuncuMetod = new Metod();
+            int sesliHarfSayisi = ucuncuMetod.SesliHarfSayisiniHesapla(metin);
+            Console.WriteLine($"Girilen metinde {sesliHarfSayisi} adet sesli harf bulunmaktadır.");
+            */
+            #endregion
+
+            #region 4-) Kullanıcıdan kaç adet sayı girmek istediğinin bilgisini alın Kullanıcının belirtmiş olduğu adet kadar sayı talep edin Bu sayıların içerisindeki tek ve çift sayıların ayrı ayrı toplamını hesaplayan iki ayrı metod oluşturun(Tek sayıların toplamı için bir metod , çift sayıların toplamı için ayrı bir metod) Daha sonra bu metodları kullanarak kullanıcın girdiği sayılardan tek ve çift sayıların toplamını hesaplayan bir program yazın
+            /*
+            Console.Write("Kaç adet sayı girmek istiyorsunuz: ");
+            int adet = Convert.ToInt32(Console.ReadLine());
+            int[] sayilar = new int[adet];
+            for (int i = 0; i < adet; i++)
+            {
+                Console.Write($"{i + 1}. sayıyı girin: ");
+                sayilar[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            Metod dorduncuMetod = new Metod();
+            int tekToplam = dorduncuMetod.TekSayilarinToplaminiHesapla(sayilar);
+            int ciftToplam = dorduncuMetod.CiftSayilarinToplaminiHesapla(sayilar);
+            Console.WriteLine($"Girilen sayılardan tek sayıların toplamı: {tekToplam}");
+            Console.WriteLine($"Girilen sayılardan çift sayıların toplamı: {ciftToplam}");
+            */
+            #endregion
+
+            #endregion
+            #region Ödev 5 Metod.cs:
+            /*
+            public string DegerTalepEt()
+            {
+                string deger;
+
+                do
+                {
+                    Console.Write("Lütfen bir string değer girin: ");
+                    deger = Console.ReadLine();
+
+                    if (string.IsNullOrWhiteSpace(deger))
+                    {
+                        Console.WriteLine("Hata: Boş bir değer girdiniz. Lütfen tekrar deneyin.");
+                    }
+                } while (string.IsNullOrWhiteSpace(deger));
+
+                return deger;
+            }
+
+            public int FaktoriyelHesapla(int sayi)
+            {
+                if (sayi < 0)
+                {
+                    throw new ArgumentException("Negatif sayıların faktöriyeli hesaplanamaz.");
+                }
+
+                int faktoriyel = 1;
+                for (int i = 1; i <= sayi; i++)
+                {
+                    faktoriyel *= i;
+                }
+                return faktoriyel;
+            }
+
+            public int SesliHarfSayisiniHesapla(string metin)
+            {
+                int sesliHarfSayisi = 0;
+                string sesliHarfler = "aeıioöuüAEIİOÖUÜ";
+
+                foreach (char harf in metin)
+                {
+                    if (sesliHarfler.Contains(harf))
+                    {
+                        sesliHarfSayisi++;
+                    }
+                }
+
+                return sesliHarfSayisi;
+            }
+
+            public int TekSayilarinToplaminiHesapla(int[] sayilar)
+            {
+                int toplam = 0;
+                foreach (int sayi in sayilar)
+                {
+                    if (sayi % 2 != 0)
+                    {
+                        toplam += sayi;
+                    }
+                }
+                return toplam;
+            }
+
+            public int CiftSayilarinToplaminiHesapla(int[] sayilar)
+            {
+                int toplam = 0;
+                foreach (int sayi in sayilar)
+                {
+                    if (sayi % 2 == 0)
+                    {
+                        toplam += sayi;
+                    }
+                }
+                return toplam;
+            }
+            */
+            #endregion
+
             Console.ReadKey();
         }
     }
