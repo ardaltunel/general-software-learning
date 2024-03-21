@@ -42,6 +42,5 @@ namespace Phantaso
                 Console.WriteLine($"Hata: {ex.Message}");
             }
         }
-        
     }
 }
