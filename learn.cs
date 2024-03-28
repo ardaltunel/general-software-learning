@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -919,9 +920,9 @@ namespace ogren
             #endregion
 
             #region Hazır String Methodlar
-            // micrasoftun bize sunmuş olduğu bazı hazır string methodlar bulunmaktadır
+            // microsoftun bize sunmuş olduğu bazı hazır string methodlar bulunmaktadır
             // bu methodlar sayasinde bir takım işlerimizi kolaylaştırabilirsiniz
-            string metin = "Merhaba Dünya";
+            // string metin = "Merhaba Dünya";
             /*
             Console.WriteLine(metin.Length);
 
@@ -962,7 +963,600 @@ namespace ogren
             */
             #endregion
 
-               
+            #region Math Methodları
+            // math sınıfı içerisinde tanımlanmış sınıflar ile matamatiksel işlemlerde işimizi kolaylaştırır
+            /*
+            Console.WriteLine(Math.Abs(-59)); // math.abs bir sayının mutlak değerini verir
+            Console.WriteLine(Math.Ceiling(9.2)); // ceiling bir üst sayıya yuvarlar
+            Console.WriteLine(Math.Floor(7.9)); // floor bir alt sayıya yuvarlar
+            Console.WriteLine(Math.Round(13.21364, 2)); // round küsüratın kaç basamak olarak gözükeceğini seçmemiz içindir
+            Console.WriteLine(Math.Max(-8,15)); // max en büyük değeri döndürür
+            Console.WriteLine(Math.Min(-12,40)); // min en küçük değeri döndürür
+            Console.WriteLine(Math.Pow(6,2)); // pow üssü alma işlemi yapar
+            Console.WriteLine(Math.Sqrt(36)); // sqrt karakök alma işlemi yapar
+            Console.WriteLine(Math.PI); // pi sayısını verir
+            Console.WriteLine(Math.E); // e sayısını verir
+            Console.WriteLine(Math.Sin(15)); // sin trigonometir içerisinde bulunan sinüs hesaplamarı içindir
+            Console.WriteLine(Math.Asin(0.54818)); // asin radyan değere karşılık gelen açıyı radyan değeri olarak verir
+            Console.WriteLine(Math.Log10(100)); // log10 10 tabanına göre logaritmasını hesaplar
+            Console.WriteLine(Math.Log(16,2)); // log ikinci girilen sayıya göre tabanına logaritmasını hesaplar
+            */
+
+            // kullanıcıdan 3 adet sayı alınız bu sayıları en küçüğünü ve en büyüğünü ekrana yazdırın
+            /*
+            Console.WriteLine("Lütfen 3 Sayı Giriniz\n");
+            Console.Write("1. Sayı: ");
+            int sayi1 = int.Parse(Console.ReadLine());
+            Console.Write("2. Sayı: ");
+            int sayi2 = int.Parse(Console.ReadLine());
+            Console.Write("3. Sayı: ");
+            int sayi3 = int.Parse(Console.ReadLine());
+            int enKucuk = Math.Min(Math.Min(sayi1, sayi2),sayi3);
+            int enBuyuk = Math.Max(Math.Max(sayi1, sayi2),sayi3);
+            Console.WriteLine("\nEn Küçük Sayı: " + enKucuk);
+            Console.WriteLine("En Büyük Sayı: " + enBuyuk);
+            */
+            #endregion
+
+            #region Array Methodları
+            // işleyişlerin kolaylaşmalarını sağlamak amacıyla bir takım array methodları vardır
+            //int[] sayilar = new int[] { 23 , 45 , 62 , 0 , 1 , -51 , 5 , 4500 , -239 };
+
+            // ekrana yazdırmak
+            /*
+            foreach (var item in sayilar) {
+                Console.Write(item + " ");
+            }
+            */
+
+            // sort alfabetik sıralamak veya küçükten büyüğe doğru sıralar
+            /*
+            Array.Sort(sayilar);
+            foreach (var item in sayilar) {
+                Console.Write(item + " ");
+            }
+            */
+
+            // reverse terse döndürür
+            /*
+            Array.Reverse(sayilar);
+            foreach (var item in sayilar) {
+                Console.Write(item + " ");
+            }
+            */
+
+            // indexof dizide arama işlemi yapıyor
+            /*
+            int sonuc = Array.IndexOf(sayilar, 62);
+            if (sonuc == -1) {
+                Console.Write("Aranan Değer Bulunamadı");
+            } else {
+                Console.Write("Aranan Değer Bulundu");
+            }
+            */
+
+            // lastindexof aramaya tersten başlar
+            /*
+            int sonuc = Array.LastIndexOf(sayilar, 62);
+            if (sonuc == -1) {
+                Console.Write("Aranan Değer Bulunamadı");
+            } else {
+                Console.Write("Aranan Değer Bulundu");
+            }
+            */
+
+            // kullanıcıdan kaç adet değer dirmek istediğini sorun
+            // girilen değerlerin içinden en küçük ve en büyük olan sayıları ekrana yazdıralım
+            /*
+            Console.Write("Kaç Adet Sayı Girmek İstersiniz?: ");
+            int adet = int.Parse(Console.ReadLine());
+            int[] girilenSayi = new int[adet];
+            Console.WriteLine("");
+            for (int i = 0; i < adet; i++) {
+                Console.Write((i + 1) + ". Sayıyı Giriniz: ");
+                girilenSayi[i] = int.Parse(Console.ReadLine());
+            }
+            Array.Sort(girilenSayi);
+            Console.WriteLine("\nEn Küçük Olan: " + girilenSayi[0]);
+            Console.WriteLine("En Büyük Olan: " + girilenSayi[adet - 1]);
+            */
+
+            // kullanıcıdan kaç adet kişi girmek istediğinizi sorun o kadar isim isteyin sonra
+            // arama yapmak için beş harf bilgisi alın belirtilen harf ile başlayan isimleri listeleyin
+            /*
+            Console.Write("Kaç adet kişi girmek istersiniz: ");
+            int kisi = int.Parse(Console.ReadLine().ToLower());
+            string[] isimler = new string[kisi];
+            for (int i = 0; i < isimler.Length; i++) {
+                Console.Write((i + 1) + ". İsim giriniz: ");
+                isimler[i] = Console.ReadLine();
+            }
+            Console.Write("\nHangi harf ile başlayan isimleri listelemek istersiniz: ");
+            char harf = char.Parse(Console.ReadLine());
+            Console.WriteLine("\n" + harf + " ile başlayan isimler şunlardır:");
+            foreach (var item in isimler) {
+                if (item.ToLower().IndexOf(harf) == 0) {
+                    Console.WriteLine(item);
+                }
+            }
+            */
+
+            // kullancııdan kaç sayi girmek istediğini soralım o adet kadar sayıyı talep edelim
+            // kullanıcılardan daha önceden giridği bir sayıyı terkar giremsini isteyin
+            // aynı sayıyı giriyor ise "Bu sayiyi daha önceden girdiniz. Lütfen başka bir sayı giriniz" mesajı ile uyarın
+            // sayılar girildikten sonra toplam ve ortalama değerlerini gösterelim
+            /*
+            Console.Write("Kaç adet sayi girmek istersiniz: ");
+            int adet = int.Parse(Console.ReadLine());
+            int[] sayilar = new int[adet];
+            int sayac = 0, toplam = 0;
+            while (sayac < adet) {
+                Console.Write((sayac + 1) + ". Sayıyı giriniz: ");
+                int sayi = int.Parse(Console.ReadLine());
+                if (Array.IndexOf(sayilar,sayi) == -1) {
+                    sayilar[sayac] = sayi;
+                    toplam += sayi;
+                    sayac++;
+                } else {
+                    Console.WriteLine("{0} Sayisi daha önceden girdiniz. Lütfen başka bir sayı giriniz",sayi);
+                }
+            }
+            double ort = (double) toplam / sayilar.Length;
+            Console.WriteLine("Sayıların toplamı: " + toplam);
+            Console.WriteLine("Sayıların ortalamarı: " + ort);
+            */
+            #endregion
+
+            #region Metodlar (public,private,internal)
+            // metodlar yapı itibari ile içerinde bulundan kod bloklarının içerisinde
+            // istediğiniz yerde çalıştırmasını sağlayan yapılardır
+            // public => halka açık manasına gelir erişim kolaylıkla sağlanabilir
+            // private => belirtilen classı gizli olarak tanımlar dışardan erişim sağlanamaz
+            // internal => diğer sınıfrlar içerisinden erişim sağlanabilir sadece başka projelerde erişim sağlanmaz
+
+            // Metod.cs:
+            /*
+            public double ToplamaIslemi(double s1, double s2)
+            {
+                double toplam = s1 + s2;
+                return toplam;
+
+            }
+
+            public void ToplaVeYaz(double s1, double s2)
+            {
+
+                Console.WriteLine("Sayıların Toplamı");
+                Console.WriteLine("İki Adet Double Değer Toplandı");
+                Console.WriteLine("Toplanan Değerler {0} ve {1}", s1, s2);
+                Console.WriteLine("Toplam = " + (s1 + s2));
+
+            }
+            */
+
+            // eklenen metoda göre bir örnek
+            /*
+            Metodlar m=new Metodlar();
+            Console.Write("Bir sayı giriniz : ");
+            double sayi1=int.Parse(Console.ReadLine());
+            Console.Write("Bir Sayı Daha Giriniz : ");
+            double sayi2=int.Parse(Console.ReadLine());
+            Console.WriteLine("--------------------");
+
+            // double toplam = m.ToplamaIslemi(sayi1, sayi2);
+            // Console.WriteLine(toplam);
+            // Console.WriteLine(m.ToplamaIslemi(sayi1,sayi2));
+
+            m.ToplaVeYaz(sayi1, sayi2);
+            */
+
+            // Metod.cs:
+            /*
+            public int CikarmaIslemi(int s1, int s2)
+            {
+                int sonuc = s1 - s2;
+                return sonuc;
+            }
+
+
+            public void CikarmaIslemiVoid(int s1, int s2)
+            {
+                Console.WriteLine("Sayıların Farkı = " + (s1 - s2));
+            }
+            */
+
+            // kullanıcıdan 2 adet sayı talep edelim
+            // talep edilen sayıların farkını ekrana yazdıralım
+            /*
+            Console.Write("Birinci Sayıyı Giriniz : ");
+            int kullaniciSayi1=int.Parse(Console.ReadLine());
+            Console.Write("İkinci Sayıyı Giriniz : " );
+            int kullaniciSayi2=int.Parse(Console.ReadLine());
+            Metod met=new Metod();
+            // Console.WriteLine("Sayıların Farkı = "+met.CikarmaIslemi(kullaniciSayi1,kullaniciSayi2));
+            met.CikarmaIslemiVoid(kullaniciSayi1,kullaniciSayi2);
+            */
+
+            // Method.cs:
+            /*
+            public int ToplamaYaptir(int[] sayilar)
+            {
+                int toplam = 0;
+                foreach (var item in sayilar)
+                {
+                    toplam += item;
+
+                }
+                return toplam;
+
+            }
+            public void ToplamveOrtalamaYazdir(int toplam, int adet)
+            {
+                Console.WriteLine("Sayıların Toplamı = " + toplam);
+                Console.WriteLine("Sayıların Ortalaması = " + toplam / adet);
+            }
+            */
+
+            // kullanıcıdan kaç adet sayı girmek istediğini talep edelim
+            // talep edilen sayıların toplamını ve ortalamasını ekrana yazdıralım
+            /*
+            Console.Write("Kaç Adet Sayı Girmek İstersiniz : ");
+            int adet=int.Parse(Console.ReadLine());
+
+            int[] sayilarDizisi=new int[adet];
+            for (int i = 0; i < sayilarDizisi.Length; i++)
+            {
+                Console.Write((i+1)+".Sayıyı Giriniz : ");
+                sayilarDizisi[i]=int.Parse(Console.ReadLine());
+            }
+            Metodlar metod = new Metodlar();
+            int sayilarinToplami = metod.ToplamaYaptir(sayilarDizisi);
+            metod.ToplamveOrtalamaYazdir(sayilarinToplami,sayilarDizisi.Length);
+            */
+
+            // Method.cs:
+            /*
+            public void Toplama(int s1, int s2)
+            {
+                int toplam = s1 + s2;
+                Console.WriteLine("Sayıların Toplamı = " + toplam);
+            }
+            public void Cikarma(int s1, int s2)
+            {
+                int fark = s1 - s2;
+                Console.WriteLine("Sayıların Farkı = " + fark);
+
+            }
+            */
+
+            // kullanıcıdan 2 adet sayı isteyelim
+            // 1-Toplama
+            // 2-Çıkarma
+            // kullanıcının seçmiş olduğu işleme göre
+            // sayıların toplamını veya farkını ekrana yazdıralım
+            /*
+            Console.Write("Birinci Sayıyı Giriniz : ");
+            int sayi1=int.Parse(Console.ReadLine());
+
+            Console.Write("İkinci Sayıyı Giriniz : ");
+            int sayi2=int.Parse(Console.ReadLine());    
+
+            Console.Clear();
+            Console.WriteLine("1-Toplama");
+            Console.WriteLine("2-Çıkarma");
+            Console.WriteLine("----------");
+            Console.WriteLine("İşlem Türünü Seçiniz");
+            int secim=int.Parse(Console.ReadLine());
+
+            Metodlar metod=new Metodlar();
+            switch (secim)
+            {
+                case 1:
+                    metod.Toplama(sayi1,sayi2);
+                    break;
+                case 2:
+                    metod.Cikarma(sayi1,sayi2);
+                    break;
+                    default:
+                    Console.WriteLine("Yanlış Seçim Yaptınız");
+                    break;
+            }
+            */
+            #endregion
+
+            #region Over Load Metod
+            // programlarımız içerisinde bazı durumlarda fonksiyon adında farklı işleyişler yaptırmay imkanı sağlayabilir
+            // örnek olaraK 2 adet int satısı parametre olarak tutan bir metodumuz olsun
+            // bu fonksiyonu çalıştırabilmemiz için foknsiyon adı altında int sayı değilde double sayıları toplamak isterse
+            // overload metod yöntemine başvurulur
+
+            // Method.cs:
+            /*
+            public void Topla(int s1, int s2)
+            {
+                Console.WriteLine(s1 + s2);
+            }
+            public void Topla(double s1, double s2)
+            {
+                Console.WriteLine(s1 + s2);
+            }
+            public void Topla(int s1, int s2, int s3)
+            {
+                Console.WriteLine(s1 + s2 + s3);
+            }
+            public void Topla(double s1, double s2, double s3)
+            {
+                Console.WriteLine(s1 + s2 + s3);
+            }
+            */
+
+            // kullanımı
+            /*
+            Metod methodlar = new Metod();
+            Console.Write("1. Fonksiyon: ");
+            methodlar.Topla(5, 10);
+            Console.Write("2. Fonksiyon: ");
+            methodlar.Topla(5.4, 9.4);
+            Console.Write("3. Fonksiyon: ");
+            methodlar.Topla(5, 12, 17);
+            Console.Write("4. Fonksiyon: ");
+            methodlar.Topla(2.1, 7.3, 8.3);
+            */
+
+            // kullanıcıdan 2 adet sayı talep edelim 1 adette işlem türü talep edelim
+            // işlem türüne göre sonucu ekrana yazıdralım kullanıcı işlem türü girmeden enter basar toplama işlemi yapar
+            // Method.cs:
+            /*
+            public void Hesapla(int s1, int s2)
+            {
+                Console.WriteLine("Geçerli bir işlem türü girmediniz sayılar toplanacak");
+                Console.WriteLine("Sayıların toplamı = " + (s1 + s2));
+            }
+            public void Hesapla(int s1, int s2, string secim)
+            {
+                string format = "{0} {1} {2} = {3}";
+                double sonuc = 0;
+
+                switch (secim)
+                {
+                    case "+":
+                        sonuc = s1 + s2;
+                        break;
+                    case "-":
+                        sonuc = s1 - s2;
+                        break;
+                    case "*":
+                        sonuc = s1 * s2;
+                        break;
+                    case "/":
+                        sonuc = s1 / s2;
+                        break;
+                }
+
+                Console.WriteLine(format, s1, secim, s2, sonuc);
+            }
+            */
+
+            /*
+            Console.WriteLine("Lütfen 2 Sayı Giriniz");
+            Console.Write("1. Sayı: ");
+            int sayi1 = int.Parse(Console.ReadLine());
+            Console.Write("2. Sayı: ");
+            int sayi2 = int.Parse(Console.ReadLine());
+            Console.Write("\nYapmak türünü giriniz ( + , - , * , / ) : ");
+            string islemTuru = Console.ReadLine();
+
+            Metod m = new Metod();
+            if (string.IsNullOrEmpty(islemTuru))
+            {
+                m.Hesapla(sayi1, sayi2);
+            }
+            else 
+            {
+                m.Hesapla(sayi1, sayi2, islemTuru);
+            }
+            */
+            #endregion
+
+            #region Static Metod
+            // şimdiye kadar oluşturduğumuz sibirları program içerisne dahil etmek için "new" ifadesini kullanıyordu
+            // new ifade sayesinde çağardığımız calss yapısı içerindeki fonksiyonlara erişim sağlıyorduk
+            // static metod ile metodlarımızda new ifade olmadan direkt erişim sağlayabiliriz
+            // internal static class Metod (static eklemesi yapılıyor)
+
+            // Metod.cs:
+            /*
+            internal static class Metod
+            {
+                public static void Topla(int s1, int s2)
+                {
+                    Console.WriteLine("Sayıların Toplamı: " + (s1 + s2));
+                }
+            }*/
+
+            // normalde "Metod methodlar = new Metod();" şelinde çağarılıyordu
+            // static sayesinde buna gerek olmadan çağarılabiliyor
+            /*
+            Metod.Topla(5, 8);
+            */
+            #endregion
+
+            #region Try Catch
+            // programımız içerisinde çalışma esnasında bazo durumlarda hata olur ve program çöker
+            // bu durumlarda çökme yaşanmaması için try catch kullanırız
+            /*
+            Console.Write("Bir sayı giriniz: ");
+            try
+            {
+                int sayi = int.Parse(Console.ReadLine());
+                Console.WriteLine("Girilen sayı: " + sayi);
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex);
+                Console.WriteLine("\n------------------\n");
+                Console.Write(ex.Message);
+                Console.WriteLine("\n\n------------------\n");
+                Console.Write("Lütfen tam sayı giriniz");
+            }
+            */
+
+            // kullanıcının 4 işlem yapabileceği bir program hazırlayın
+            // girilen değerleri trycatch ile kontrol edelim
+            // Metod.cs olarak ta bunu ekleyebilrsiniz main dizinin dışında yazabilirsiniz
+            /*
+            public void SecimMenusu()
+            {
+                Console.WriteLine("İşleminizi seçin");
+                Console.WriteLine("1-Toplama");
+                Console.WriteLine("2-Çıkarma");
+                Console.WriteLine("3-Çarpma");
+                Console.WriteLine("4-Bölme");
+            }
+            */
+
+            /*
+            Program m = new Program();
+            try
+            {
+                Console.Write("1. Sayıyı Giriniz: ");
+                int sayi1=int.Parse(Console.ReadLine());
+                Console.Write("2. Sayıyı Giriniz: ");
+                int sayi2=int.Parse(Console.ReadLine());
+                Console.Clear();
+                m.SecimMenusu();
+                Console.Write("\nİşleminizi seçin: ");
+                int secim = int.Parse(Console.ReadLine());
+                switch (secim)
+                {
+                    case 1:
+                        Console.WriteLine("Sayıların toplamı: " +(sayi1+sayi2));
+                        break;
+                    case 2:
+                        Console.WriteLine("Sayıların farkı: " +(sayi1-sayi2));
+                        break;
+                    case 3:
+                        Console.WriteLine("Sayıların çarpımı: " +(sayi1*sayi2));
+                        break;
+                    case 4:
+                        Console.WriteLine("Sayıların bölümü: " +(sayi1/sayi2));
+                        break;
+                    default: Console.WriteLine("Yanlış bir işlem yaptınız");
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            */
+            #endregion
+
+            #region Sınıflar (Class)
+            // classlar nesne yönelimli programların en önemli yapı taşlarından birisidir
+            // class yapılarının içerisinde barınan tüm elamarın bir erişim düzenleyici olması zorunludur
+            /*
+            class MyClass
+            {
+
+            }
+            */
+            #endregion
+
+            #region Field
+            // class içerisinde bir veritipi class veya koleysiona bağlı olarak tanımlanan değişkenlere denir
+            // default olarak erişim düzenleyicileri private olarak tanımlanır
+            // başka class üzerinden erişmek için public olması gerekir
+            /*
+            ClassIsmi ogr = new ClassIsmi();
+            ogr.ad = "Ahmet";
+            ogr.soyad = "Kanca";
+            ogr.no = 43;
+            Console.WriteLine("Adı: " + ogr.ad);
+            Console.WriteLine("Soyadı: " + ogr.soyad);
+            Console.WriteLine("Numarası: " + ogr.no);
+            */
+            #endregion
+
+            #region Class Ornek
+            // bir öğrenci classı oluşturalım ad soyad not1 not2 bilgileri yer alalım
+            // öğrencilerin tüm bilgilerini kullanıcında talep edelim ve ekrana yazıdralmı
+            // Ogrenci.cs:
+            /*
+            public string ad;
+            public string soyad;
+            public int not1;
+            public int not2;
+            */
+
+            /*
+            Ogrenci ogr = new Ogrenci();
+            Console.Write("Adinizi Girin: ");
+            ogr.ad = Console.ReadLine();
+            Console.Write("Soyadinizi Girin: ");
+            ogr.soyad = Console.ReadLine();
+            Console.Write("Not 1'i Girin: ");
+            ogr.not1 = int.Parse(Console.ReadLine());
+            Console.Write("Not 2'yi Girin: ");
+            ogr.not2 = int.Parse(Console.ReadLine());
+
+            Console.Clear();
+            Console.WriteLine("Girilen Bilgileriniz\n");
+            Console.WriteLine("Adı: " + ogr.ad);
+            Console.WriteLine("Soyadı: " + ogr.soyad);
+            Console.WriteLine("Numarası: " + ogr.not1);
+            Console.WriteLine("Numarası: " + ogr.not2);
+            */
+            #endregion
+
+            #region Property
+            // class yapıları içerisinde tanımlanan bazı değişkenlerin sadece okunabilir veya yazılabilir olmasını isteyebiliriz
+            // property ler sınıflar içerindeki değişkenleri kasıtlamamızı sağlar
+
+            // Metod.cs:
+            /*
+            public string ad, soyad;
+            public double n1, n2;
+            public double notOrtalamasi { get { return (n1 + n2) / 2; } }
+
+            public string ogrencAdi { set { ad = value; } } // private ise değişkeni çağarabiliriz (get olmadığı için okuma yapamaz)
+            */
+
+            /*
+            Metod o = new Metod();
+            o.ad = "Ali";
+            o.soyad = "Polat";
+            o.n1 = 60;
+            o.n2 = 85;
+            Console.WriteLine("Adı: " +o.ad);
+            Console.WriteLine("Soyadı: " +o.soyad);
+            Console.WriteLine("Not Ortalaması: " +o.notOrtalamasi);
+            */
+
+            // property için örnek
+            // Metod.cs:
+            /*
+            public string kullaniciAdi;
+            private string _parola;
+            public string parolaTanimla { set { _parola = value; } }
+            public void GirisYap(string kAdi, string parola) {
+                if (kAdi == kullaniciAdi && parola == _parola) { Console.WriteLine("Giriş Yapıldı"); }
+                else { Console.WriteLine("Girişiniz Başarısız"); }
+            }
+            */
+
+            /*
+            Metod k = new Metod();
+            k.kullaniciAdi = "admin";
+            k.parolaTanimla = "1234";
+            Console.Write("Kullanici adi: ");
+            string kAdi = Console.ReadLine();
+            Console.Write("Şifre: ");
+            string parola = Console.ReadLine();
+            k.GirisYap(kAdi, parola);
+            */
+            #endregion
+
             Console.ReadKey();
         }
     }
