@@ -781,6 +781,302 @@ namespace odev
             */
             #endregion
 
+            #region Ödev 6 Program.cs:
+
+            #region 1-) Kullanıcıdan bir sayı talep edin 2'den , kullanıcının girdiği sayıya kadar olan sayılardan asal olanları ekrana yazdıralım 2'den , kullanıcının girdiği sayıya kadar olan sayılardan asal olanları ekrana yazdıralım giremesin.Eğer ki böyle bir değer girerse tekrar sayı isteyin)
+            /*
+            Metod metod = new Metod();
+            Console.Write("Bir sayı girin: ");
+            int sayi;
+            while (!int.TryParse(Console.ReadLine(), out sayi) || sayi < 2) {
+                Console.WriteLine("Geçersiz giriş. Lütfen 2'den büyük bir tam sayı girin:");
+                Console.Write("Bir sayı girin: ");
+            }
+            Console.WriteLine($"2'den {sayi} kadar olan asal sayılar:");
+            for (int i = 2; i <= sayi; i++) {
+                if (metod.AsalMi(i)) {
+                    Console.Write(i + " ");
+                }
+            }
+            */
+            #endregion
+
+            #region 2-) 1/1! + 1/2! + 1/3! +...+1/n! toplamını klavyeden girilen n değerine göre bulunuz. Kullanıcının doğru değer girip girmediğin kontrol edin ve duruma göre tekrardan sayı talep edin
+            /*
+            Console.Write("Bir n değeri girin: ");
+            int n;
+            while (!int.TryParse(Console.ReadLine(), out n) || n < 1) {
+                Console.WriteLine("Geçersiz giriş. Lütfen pozitif bir tam sayı girin:");
+                Console.Write("Bir n değeri girin: ");
+            }
+            Metod hesaplayici = new Metod();
+            double toplam = hesaplayici.HesaplaToplam(n);
+            Console.WriteLine($"Toplam: {toplam}");
+            */
+            #endregion
+
+            #region 3-) 5 elemanlı 2 adet dizi oluşturun Kullanıcıdan bu 2 diziyi doldurmasını isteyin 1.Dizinin içerisindeki elemanları tek tek 2.dizinin içerisindeki bütün elemanlarla çarpımını alın
+            /*
+            Metod hesaplayici = new Metod();
+            int[] dizi1 = new int[5];
+            int[] dizi2 = new int[5];
+            Console.WriteLine("1. Diziyi doldurun");
+            Console.WriteLine("--------------------");
+            hesaplayici.DiziyiDoldur(dizi1);
+            Console.WriteLine("\n2. Diziyi doldurun");
+            Console.WriteLine("--------------------");
+            hesaplayici.DiziyiDoldur(dizi2);
+            Console.WriteLine("\nDizinin Çarpımlarından 5 'e bölünebilenler:");
+            Console.WriteLine("------------------------------------------------");
+            hesaplayici.CarpimlariHesaplaVeYazdir(dizi1, dizi2);
+            */
+            #endregion
+
+            #region 4-) Klavyeden girilen bir cümleyi şifreleyen program yazın. Kullanıcı bir cümle girdikten sonra enter tuşuna bastıktan sonra ilk önce girilen cümle tekrar ekrana yazdırılacak Sonra ise cümle tersten şifreli olarak ekrana yazdırılacaktır. Tersten ekrana yazdırılır iken a yerine ?, e yerine *, i veya ı yerine =, ö veya o yerine & ve ü veya u yerine + karakterleri kullanılacaktır. Cümlede kaç tane karakter şifrelendi, kaç tanesi şifrelenmedi bilgisi de ekrana yazdırılacaktır.
+            /*
+            Metod hesaplayici = new Metod();
+            Console.Write("Lütfen bir cümle girin: ");
+            string cumle = Console.ReadLine();
+            Console.WriteLine("\nGirilen Cümle: " + cumle);
+            string sifreliCumle = hesaplayici.SifreleCumle(cumle);
+            Console.WriteLine("Şifrelenmiş Cümle: " + sifreliCumle);
+            int sifrelenenKarakterSayisi = hesaplayici.SifrelenenKarakterSayisi(cumle);
+            int sifrelenmeyenKarakterSayisi = cumle.Length - sifrelenenKarakterSayisi;
+            Console.WriteLine($"\nToplam {cumle.Length} karakterden {sifrelenenKarakterSayisi} karakter şifrelendi, {sifrelenmeyenKarakterSayisi} karakter şifrelenmedi.");
+            */
+            #endregion
+
+            #region 5-) Kayıt Ol , Giriş Yap seçeneklerin olduğu bir menü hazırlayın Kullanıcı Kayıt ol seçeneğini seçerse kullanıcı adı, parola, parola(tekrar) , ad, soyad, yaş bilgilerini isteyin Kayıt olma işlemini eksiksiz ve hatasız yaparsa kullanıcıyı menüye döndürün Kullanıcı Giriş yap seçeneğine basarsa Kullanıcı adı ve parola bilgisi isteyin ve girmiş olduğu bilgiler önceden kayıt olan herhangi bir veriyle eşleşirse Giriş başarılı mesajını döndürüp kullanıcının bilgilerini ekrana yazdırın Eğer verilerde eşleşme olmazsa Kullanıcı adı veya parola hatalı şeklinde uyarı verip tekrardan ana menüye dönme işlemi yapın Bu işlemleri yaparken kullanıcının doğru değerler girip girmediğini kontrol etmeyi unutmayın
+            /*
+            while (true)
+            {
+                Console.WriteLine("Ana Menü:");
+                Console.WriteLine("1. Kayıt Ol");
+                Console.WriteLine("2. Giriş Yap");
+                Console.WriteLine("3. Çıkış");
+                Console.Write("Seçiminizi yapınız: ");
+
+                string secim = Console.ReadLine();
+
+                switch (secim)
+                {
+                    case "1":
+                        Metod.KayitOl();
+                        break;
+                    case "2":
+                        Metod.GirisYap();
+                        break;
+                    case "3":
+                        Console.WriteLine("Programdan çıkılıyor...");
+                        return;
+                    default:
+                        Console.WriteLine("Geçersiz seçim. Lütfen tekrar deneyin.");
+                        break;
+                }
+            }
+            */
+            #endregion
+
+            #endregion
+            #region Ödev 6 Metod.cs:
+            /*
+            internal class Metod
+            {
+                public bool AsalMi(int sayi)
+                {
+                    if (sayi <= 1) {
+                        return false;
+                    }
+
+                    for (int i = 2; i <= Math.Sqrt(sayi); i++) {
+                        if (sayi % i == 0) {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+
+                public double HesaplaToplam(int n)
+                {
+                    double toplam = 0;
+                    for (int i = 1; i <= n; i++) {
+                        toplam += 1.0 / Faktoriyel(i);
+                    }
+                    return toplam;
+                }
+
+                private int Faktoriyel(int sayi)
+                {
+                    int faktoriyel = 1;
+                    for (int i = 2; i <= sayi; i++) {
+                        faktoriyel *= i;
+                    }
+                    return faktoriyel;
+                }
+
+                public void CarpimlariHesaplaVeYazdir(int[] dizi1, int[] dizi2)
+                {
+                    int sayac = 0;
+                    for (int i = 0; i < dizi1.Length; i++) {
+                        for (int j = 0; j < dizi2.Length; j++) {
+                            int carpim = dizi1[i] * dizi2[j];
+                            if (carpim % 5 == 0) {
+                                Console.Write($"{carpim} ");
+                                sayac++;
+                            }
+                        }
+                    }
+                    if (sayac == 0) {
+                        Console.WriteLine("Hiçbir çarpım 5'e bölünemez.");
+                    }
+                }
+
+                public void DiziyiDoldur(int[] dizi)
+                {
+                    for (int i = 0; i < dizi.Length; i++) {
+                        Console.Write($"{i + 1}. Eleman: ");
+                        while (!int.TryParse(Console.ReadLine(), out dizi[i])) {
+                            Console.WriteLine("Geçersiz giriş. Lütfen bir tam sayı girin:");
+                            Console.Write($"{i + 1}. Eleman: ");
+                        }
+                    }
+                }
+
+                public string SifreleCumle(string cumle)
+                {
+                    StringBuilder sifreliCumle = new StringBuilder();
+                    for (int i = cumle.Length - 1; i >= 0; i--) {
+                        char karakter = cumle[i];
+                        switch (char.ToLower(karakter)) {
+                            case 'a':
+                                sifreliCumle.Append('?');
+                                break;
+                            case 'e':
+                                sifreliCumle.Append('*');
+                                break;
+                            case 'i':
+                            case 'ı':
+                                sifreliCumle.Append('=');
+                                break;
+                            case 'ö':
+                            case 'o':
+                                sifreliCumle.Append('&');
+                                break;
+                            case 'ü':
+                            case 'u':
+                                sifreliCumle.Append('+');
+                                break;
+                            default:
+                                sifreliCumle.Append(karakter);
+                                break;
+                        }
+                    }
+                    return sifreliCumle.ToString();
+                }
+
+                public int SifrelenenKarakterSayisi(string cumle)
+                {
+                    int sifrelenenKarakterSayisi = 0;
+                    foreach (char karakter in cumle) {
+                        if (SifrelemeKarakterMi(karakter)) {
+                            sifrelenenKarakterSayisi++;
+                        }
+                    }
+                    return sifrelenenKarakterSayisi;
+                }
+
+                public bool SifrelemeKarakterMi(char karakter)
+                {
+                    switch (char.ToLower(karakter)) {
+                        case 'a':
+                        case 'e':
+                        case 'i':
+                        case 'ı':
+                        case 'ö':
+                        case 'o':
+                        case 'ü':
+                        case 'u':
+                            return true;
+                        default:
+                            return false;
+                    }
+                }
+
+                static List<Kullanici> kullanicilar = new List<Kullanici>();
+
+                public static void KayitOl()
+                {
+                    Console.WriteLine("\nKayıt Ol");
+                    Console.Write("Kullanıcı Adı: ");
+                    string kullaniciAdi = Console.ReadLine();
+                    if (KullaniciAdiKullanimdaMi(kullaniciAdi)) {
+                        Console.WriteLine("Bu kullanıcı adı zaten kullanımda. Lütfen farklı bir kullanıcı adı seçin.");
+                        return;
+                    }
+                    Console.Write("Parola: ");
+                    string parola = Console.ReadLine();
+                    Console.Write("Parola (Tekrar): ");
+                    string parolaTekrar = Console.ReadLine();
+                    if (parola != parolaTekrar) {
+                        Console.WriteLine("Parolalar eşleşmiyor. Lütfen parolaları tekrar girin.");
+                        return;
+                    }
+                    Console.Write("Ad: ");
+                    string ad = Console.ReadLine();
+                    Console.Write("Soyad: ");
+                    string soyad = Console.ReadLine();
+                    Console.Write("Yaş: ");
+                    if (!int.TryParse(Console.ReadLine(), out int yas) || yas <= 0) {
+                        Console.WriteLine("Geçersiz yaş. Lütfen pozitif bir tam sayı girin.");
+                        return;
+                    }
+                    Kullanici yeniKullanici = new Kullanici(kullaniciAdi, parola, ad, soyad, yas);
+                    kullanicilar.Add(yeniKullanici);
+                    Console.WriteLine("Kayıt işlemi başarıyla tamamlandı.");
+                }
+
+                public static void GirisYap()
+                {
+                    Console.WriteLine("\nGiriş Yap");
+                    Console.Write("Kullanıcı Adı: ");
+                    string kullaniciAdi = Console.ReadLine();
+                    Console.Write("Parola: ");
+                    string parola = Console.ReadLine();
+                    Kullanici girisYapanKullanici = kullanicilar.Find(k => k.KullaniciAdi == kullaniciAdi);
+                    if (girisYapanKullanici != null && girisYapanKullanici.ParolaKontrol(parola)) {
+                        Console.WriteLine("\nGiriş Başarılı");
+                        Console.WriteLine("Adınız: " + girisYapanKullanici.Ad);
+                        Console.WriteLine("Soyadınız: " + girisYapanKullanici.Soyad);
+                        Console.WriteLine("Yaşınız: " + girisYapanKullanici.Yas);
+                    } else {
+                        Console.WriteLine("Kullanıcı adı veya parola hatalı. Lütfen tekrar deneyin.");
+                    }
+                }
+
+                static bool KullaniciAdiKullanimdaMi(string kullaniciAdi) { return kullanicilar.Exists(k => k.KullaniciAdi == kullaniciAdi); }
+            }
+            public class Kullanici
+            {
+                public string KullaniciAdi { get; set; }
+                public string Parola { get; set; }
+                public string Ad { get; set; }
+                public string Soyad { get; set; }
+                public int Yas { get; set; }
+
+                public Kullanici(string kullaniciAdi, string parola, string ad, string soyad, int yas)
+                {
+                    KullaniciAdi = kullaniciAdi;
+                    Parola = parola;
+                    Ad = ad;
+                    Soyad = soyad;
+                    Yas = yas;
+                }
+
+                public bool ParolaKontrol(string parola) { return Parola == parola; }
+            }
+            */
+            #endregion
+
             Console.ReadKey();
         }
     }
