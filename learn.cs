@@ -1557,6 +1557,80 @@ namespace ogren
             */
             #endregion
 
+            #region List
+            // list koleksiyonu c# programlama dili içerisinde sık kulanılan bir köleksiyonlardan bir tanesidir
+            // koleksiyon tanımlama işlemi esnasında içerisinde kaç adet elaman barındıralacağını belirmemize ihtiyac yoktur
+            /*
+            List<int> sayilar = new List<int>();
+            sayilar.Add(53);
+            sayilar.Add(42);
+            sayilar.Add(-85);
+            Console.WriteLine("0. İndexteki 1. Eleman : " + sayilar[0]);
+            Console.WriteLine("1. İndexteki 2. Eleman : " + sayilar[1]);
+            Console.WriteLine("2. İndexteki 3. Eleman : " + sayilar[2]);
+            sayilar[1] = 70;
+            Console.WriteLine("1. İndexteki 2. Eleman (değiştirilmiş) : " + sayilar[1]);
+            sayilar.Remove(70); // belirtilen değeri koleysion içerisinde arayı bulursa siler
+            sayilar.RemoveAt(0); // index numarasına göre elamanı siler
+            sayilar.Count(); // koleksyion içindeki eleman sayısı
+            */
+
+            // kullanıcıdan kaç adet sayi girmek istedini soralım
+            // belirttiği sayı kadar sayıyı list koleksiyonu içerisinde barındıralım
+            // kullanıcıdan girmiş oldu sayıların toplamını ve ortalamasını ekrana yazdıralım
+            /*
+            Console.Write("Kaç adet sayi girmek istersiniz: ");
+            int adet = int.Parse(Console.ReadLine());
+            List<int> sayilar = new List<int>();
+            for (int i = 1; i < adet; i++) {
+                Console.WriteLine(i + ". Sayiyi giriniz: ");
+                int sayi = int.Parse(Console.ReadLine());
+                sayilar.Add(sayi);
+            }
+            int toplam = 0;
+            foreach (var sayi in sayilar) {
+                toplam += sayi;
+            }
+            double ort = (double)toplam / sayilar.Count());
+            Console.WriteLine("\nSayıların toplamı: " +toplam);
+            Console.WriteLine("Sayıların ortalaması: " + Math.Round(ort,2));
+            */
+            #endregion
+
+            #region Genel Alıştırma
+            // Öğrenci kayıt programı
+            // 1. Öğrenci ekle
+            // 2. Öğrenci sil
+            // 3. Öğrenci listele
+            // 4. Öğrenci ara
+            // 5. Toplam öğrenci sayısı
+            // 6. Öğrencilerin genel not ortalaması
+            // 0. Programdan çıkış
+            // yukardaki işlemleri yapabilen bir program yazın
+            
+            ConsoleKey cevap;
+            do {
+                Console.Clear();
+                Console.WriteLine("Öğrenci Kayıt Programı");
+                Console.WriteLine("--------------------------");
+                Console.WriteLine("1. Öğrenci Ekle");
+                Console.WriteLine("2. Öğrenci Sil");
+                Console.WriteLine("3. Öğrenci Listele");
+                Console.WriteLine("4. Öğrenci Ara");
+                Console.WriteLine("5. Toplam Öğrenci Sayısı");
+                Console.WriteLine("6. Öğrencilerin Genel Not Ortalaması");
+                Console.WriteLine("0. Programdan Çıkış");
+                Console.WriteLine("--------------------------");
+                Console.Write("Seçiminizi Yapın (0-6): ");
+                cevap = Console.ReadKey().Key;
+                Menu.Islemler(cevap);
+            } while (cevap != ConsoleKey.D0 && cevap != ConsoleKey.NumPad0);
+            Console.Clear();
+            Console.WriteLine("Programı Kullandığınız İçin Teşekür Ederiz");
+            Console.WriteLine("Kapatmak İçin Herhangi Bir Tuşa Basınız");
+
+            #endregion
+            
             Console.ReadKey();
         }
     }
