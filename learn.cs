@@ -1607,7 +1607,228 @@ namespace ogren
             // 6. Öğrencilerin genel not ortalaması
             // 0. Programdan çıkış
             // yukardaki işlemleri yapabilen bir program yazın
-            
+
+            // Menu.cs:
+            /*
+            internal static class Menu
+            {
+                static List<Ogrenci> ogrenciler = new List<Ogrenci>();
+                public static void Islemler(ConsoleKey secim)
+                {
+                    switch (secim)
+                    {
+                        case ConsoleKey.D1:
+                        case ConsoleKey.NumPad1:
+                            OgrenciEkle("Öğrenci Ekleme Sayfası");
+                            break;
+                        case ConsoleKey.D2:
+                        case ConsoleKey.NumPad2:
+                            OgrenciSil("Öğrenci Silme Sayfası");
+                            break;
+                        case ConsoleKey.D3:
+                        case ConsoleKey.NumPad3:
+                            OgrencileriListele("Öğrenci Listeleme Sayfası");
+                            break;
+                        case ConsoleKey.D4:
+                        case ConsoleKey.NumPad4:
+                            OgrenciAra("Öğrenci Arama Sayfası");
+                            break;
+                        case ConsoleKey.D5:
+                        case ConsoleKey.NumPad5:
+                            ToplamOgrenci("Toplam Öğrenci Sayısı");
+                            break;
+                        case ConsoleKey.D6:
+                        case ConsoleKey.NumPad6:
+                            GenelNotOrtalamasi("Öğrencilerin Genel Not Ortalaması");
+                            break;
+                        default: break;
+                    }
+                }
+                private static void BaslikYazdir(string metin)
+                {
+                    Console.Clear();
+                    Console.WriteLine(metin);
+                    Console.WriteLine("------------------------");
+                }
+                private static void AnaMenuyeDon(string metin)
+                {
+                    Console.WriteLine("\n\n" + metin);
+                    Console.WriteLine("Ana Menüye Dönmek İçin Bir Tuşa Basınız");
+                    Console.ReadKey();
+                }
+                private static void OgrenciEkle(string metin)
+                {
+                    BaslikYazdir(metin);
+                    Ogrenci o = new Ogrenci();
+                    o.ad = Metodlar.GetString("Öğrencinin Adını Giriniz: ");
+                    o.soyad = Metodlar.GetString("Öğrencinin Soyadını Giriniz: ");
+                    o.okulNo = Metodlar.GetInt("Öğrencinin Numarasını Giriniz: ", 1, 9999);
+                    o.n1 = Metodlar.GetDouble("Öğrencinin 1. Sınav Notunu Giriniz: ", 1, 100);
+                    o.n2 = Metodlar.GetDouble("Öğrencinin 2. Sınav Notunu Giriniz: ", 1, 100);
+                    ogrenciler.Add(o);
+                    AnaMenuyeDon("Kayıt İşlemi Başarılı Bir Şekilde Gerçekleşti");
+                }
+                private static void OgrenciSil(string metin)
+                {
+                    BaslikYazdir(metin);
+                    if (ogrenciler.Count > 0) {
+                        for (int i = 0; i < ogrenciler.Count; i++) {
+                            ogrenciler[i].Yazdir(i+1);
+                        }
+                        int siraNo = Metodlar.GetInt("Silmek İstediğiniz Öğrencinin Sıra Numarasını Giriniz: ", 1, ogrenciler.Count);
+                        ogrenciler.RemoveAt(siraNo - 1);
+                        AnaMenuyeDon("Silme İşlemi Başarılı Bir Şekilde Gerçekleşmiştir");
+                    } else {
+                        AnaMenuyeDon("Listede Kayıtlı Öğrenci Bulunamadı");
+                    }
+                }
+                private static void OgrencileriListele(string v)
+                {
+                    BaslikYazdir(v);
+                    if (ogrenciler.Any()) {
+                        for (int i = 0; i < ogrenciler.Count; i++) {
+                            ogrenciler[i].Yazdir();
+                        }
+                        AnaMenuyeDon(string.Format("Toplam {0} adet öğrenci listelenmiştir",ogrenciler.Count));
+                    } else {
+                        AnaMenuyeDon("Listede Kayıtlı Öğrenci Bulunamadı");
+                    }
+                }
+                private static void OgrenciAra(string v) 
+                {
+                    BaslikYazdir(v);
+                    if (ogrenciler.Any()) {
+                        string aranacakOgrenci = Metodlar.GetString("Aranacak Öğrencinin Adını veya Soyadını Giriniz: ");
+                        int adet = 0;
+                        foreach (var ogrenci in ogrenciler) {
+                            if (ogrenci.tamAd.ToLower().Contains(aranacakOgrenci.ToLower())) {
+                                adet++;
+                                ogrenci.Yazdir(adet);
+                            }
+                        }
+                        AnaMenuyeDon(string.Format("{0} kelimesine karışık {1} tane öğrenci bulunmuştur",aranacakOgrenci,adet));
+                    } else {
+                        AnaMenuyeDon("Listede Aranacak Kayıtlı Bir Öğrenci Bulunamadı");
+                    }
+                }
+                private static void ToplamOgrenci(string v)
+                {
+                    BaslikYazdir(v);
+                    if (ogrenciler.Any()) {
+                        AnaMenuyeDon(string.Format("Listede {0} tane kayıtlı öprenci vardır",ogrenciler.Count));
+                    } else {
+                        AnaMenuyeDon("Kayıtlı Öğrenci Bulunamadı");
+                    }
+                }
+                private static void GenelNotOrtalamasi(string v) 
+                { 
+                    BaslikYazdir(v);
+                    if (ogrenciler.Any()) {
+                        double genelOrt = 0;
+                        foreach (var item in ogrenciler) {
+                            genelOrt += item.ortalama;
+                        }
+                        double sonuc = genelOrt / ogrenciler.Count;
+                        AnaMenuyeDon(string.Format("{0} adet ogrencinin genel not ortalaması = {1}", ogrenciler.Count, sonuc));
+                    } else {
+                        AnaMenuyeDon("Listede Kayıtlı Öğrenci Bulunamadı");
+                    }
+                }
+            }
+            */
+
+            // Metodlar.cs:
+            /*
+            internal static class Metodlar
+            {
+                public static string GetString(string metin)
+                {
+                    string text = string.Empty;
+                    bool hata = true;
+                    do {
+                        Console.Write(metin);
+                        text = Console.ReadLine();
+                        if (string.IsNullOrEmpty(text)) {
+                            Console.WriteLine("Boş Bırakılamaz");
+                            hata = true;
+                        } else {
+                            hata = false;
+                        }
+                    } while (hata);
+                    return text;
+                }
+                public static int GetInt(string metin, int min = int.MinValue, int max = int.MaxValue)
+                {
+                    int sayi = 0;
+                    bool hata = true;
+                    do {
+                        Console.Write(metin);
+                        try {
+                            sayi = int.Parse(Console.ReadLine());
+                            if (sayi >= min && sayi <= max) {
+                                hata = false;
+                            } else {
+                                Console.WriteLine("Girilen sayı {0} ile {1} aralığında olmalıdır",min,max);
+                                hata = true;
+                            }
+                        } catch (Exception e) {
+                            Console.WriteLine(e.Message);
+                            hata = true;
+                        }
+                    } while (hata);
+                    return sayi;
+                }
+                public static double GetDouble(string metin, double min = double.MinValue, double max = double.MaxValue)
+                {
+                    double sayi = 0;
+                    bool hata = true;
+                    do {
+                        Console.Write(metin);
+                        try {
+                            sayi = double.Parse(Console.ReadLine());
+                            if (sayi >= min && sayi <= max) {
+                                hata = false;
+                            } else {
+                                Console.WriteLine("Girilen sayı {0} ile {1} aralığında olmalıdır", min, max);
+                                hata = true;
+                            }
+                        } catch (Exception e) {
+                            Console.WriteLine(e.Message);
+                            hata = true;
+                        }
+                    } while (hata);
+                    return sayi;
+                }
+            }
+            */
+
+            // Ogrenci.cs:
+            /*
+            internal class Ogrenci
+            {
+                public string ad, soyad;
+                public int okulNo;
+                public double n1, n2;
+
+                public double ortalama {
+                    get { return (n1+n2) / 2; }
+                }
+                public string tamAd {
+                    get { return (ad + " " + soyad); }
+                }
+                public void Yazdir() {
+                    Console.WriteLine("Öğrencinin Adı ve Soyadı: " + tamAd);
+                    Console.WriteLine("Öğrencinin Sınav Notları: {0} , {1}",n1,n2);
+                    // Console.WriteLine("Öğrencinin Sınav Notları: " + n1 + " , " + n2);
+                    Console.WriteLine("Öğrencinin Not Ortalaması: " + ortalama + "\n");
+                }
+                public void Yazdir(int siraNo) {
+                    Console.WriteLine(siraNo + "-) " + tamAd);
+                }
+            }
+            */
+
+            /*
             ConsoleKey cevap;
             do {
                 Console.Clear();
@@ -1628,9 +1849,9 @@ namespace ogren
             Console.Clear();
             Console.WriteLine("Programı Kullandığınız İçin Teşekür Ederiz");
             Console.WriteLine("Kapatmak İçin Herhangi Bir Tuşa Basınız");
-
+            */
             #endregion
-            
+
             Console.ReadKey();
         }
     }
