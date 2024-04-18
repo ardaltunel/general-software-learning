@@ -2080,6 +2080,11 @@ namespace ogren
             foreach (var item in liste) {
                 Console.WriteLine(item);
             }
+            var kbSehirler = from s in sehirler orderby s ascending select s;
+            Console.WriteLine("\nOrderBY\n-------------");
+            foreach (var item in kbSehirler) {
+                Console.WriteLine(item);
+            }
             */
             #endregion
 
