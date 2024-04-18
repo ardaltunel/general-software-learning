@@ -1852,6 +1852,150 @@ namespace ogren
             */
             #endregion
 
+            #region Inheritance
+            // Inheritance (Kalıtım)
+            // C# programlama dili içerisinde aynı proje içerisinde birden fazla class yazılabilir
+            // bu classlar içersinde bazı propertylerin özellikleri aynı olabilir
+            // bir classı başka bir classa miras alabilir miras aldığınız class içerisinde diğer classın tüm özellikleri kullanılabilir
+            // bir classa sadece bir tane class miras edebilirsiniz
+
+            // Kisi.cs:
+            /*
+            internal class Kisi
+            {
+                public string ad, soyad;
+                public string tamAd
+                {
+                    get { return ad + " " + soyad; }
+                }
+            }
+            */
+
+            // Personel.cs:
+            /*
+            internal class Personel:Kisi
+            {
+                public int calismaSaati, saatlikUcret;
+                public double maas
+                {
+                    get { return (double)calismaSaati * saatlikUcret; }
+                }
+                public void Yazdir()
+                {
+                    Console.WriteLine("Personel Bilgileri");
+                    Console.WriteLine("--------------------");
+                    Console.WriteLine("Personelin Adı ve Soyadı: " + tamAd);
+                    Console.WriteLine("Çalışma Saati: " + calismaSaati);
+                    Console.WriteLine("Saatlik Ücret: " + saatlikUcret);
+                    Console.WriteLine("Maaş: " + maas);
+                }
+            }
+            */
+
+            // SaticDanismani.cs:
+            /*
+            internal class SatisDanismani:Personel
+            {
+                public double prim;
+                public double toplamMaas { get { return prim + maas; } }
+                public new void Yazdir()
+                {
+                    Console.WriteLine("Personel Bilgileri");
+                    Console.WriteLine("-----------------");
+                    Console.WriteLine("Personelin Adı ve Soyadı: " + tamAd);
+                    Console.WriteLine("Çalışma Saatli: " + calismaSaati);
+                    Console.WriteLine("Saatlik Ücret: " + saatlikUcret);
+                    Console.WriteLine("Maaş: " + maas);
+                    Console.WriteLine("Prim: " + prim);
+                    Console.WriteLine("Toplam Alacağı Maaş: " + toplamMaas);
+                }
+            }
+            */
+
+            /*
+            Personel p = new Personel();
+            p.ad = "Ahmet";
+            p.soyad = "kaçar";
+            p.calismaSaati = 250;
+            p.saatlikUcret = 300;
+            p.Yazdir();
+            Console.WriteLine("\n");
+            SatisDanismani sd = new SatisDanismani();
+            sd.ad = "Ayşe";
+            sd.soyad = "Yumlu";
+            sd.calismaSaati = 180;
+            sd.saatlikUcret = 350;
+            sd.prim = 15000;
+            sd.Yazdir();
+            */
+            #endregion
+
+            #region Inheritance Örnek
+            // Öğrenci ve öğretmen bilgilerini yazdırabileceğimiz bir program yapalım
+            // Öğretmen (üniversite , branş)
+            // Öğrenci (sınınf , okulNo)
+
+            // Kisi.cs:
+            /*
+            internal class Kisi
+            {
+                public string ad, soyad;
+                public string tamAd
+                {
+                    get { return ad + " " + soyad; }
+                }
+            }
+            */
+
+            // Ogrenci.cs:
+            /*
+            internal class Ogrenci:Kisi
+            {
+                public int sinif, okulNo;
+                public void Yazdir()
+                {
+                    Console.WriteLine("Öğrenci Bilgilieri");
+                    Console.WriteLine("------------------");
+                    Console.WriteLine("Öğrenci Adı ve Soyadı: " + tamAd);
+                    Console.WriteLine("Öprencinin Sınıfı: " + sinif);
+                    Console.WriteLine("Öğrencinin Okul Numarası: " + okulNo);
+                }
+            }
+            */
+
+            // Ogretmen.cs:
+            /*
+            internal class Ogretmen:Kisi
+            {
+                public string uni, brans;
+                public new void Yazdir()
+                {
+                    Console.WriteLine("Öğretmen Bilgilieri");
+                    Console.WriteLine("------------------");
+                    Console.WriteLine("Öğretmen Adı ve Soyadı: " + tamAd);
+                    Console.WriteLine("Öğretmenin Mezun Olduğu Üniversite: " + uni);
+                    Console.WriteLine("Öğretmenin Branşı: " + brans);
+                }
+            }
+            */
+
+            /*
+            Ogrenci ogrenci = new Ogrencii();
+            ogrenci.ad = "Osman";
+            ogrenci.soyad = "Akkaya";
+            ogrenci.okulNo = "2051";
+            ogrenci.sinif = "11";
+            ogrenci.Yazdir();
+            Console.WriteLine("\n");
+            Ogretmen ogretmen = new Ogretmen();
+            ogretmen.ad = "Kemal";
+            ogretmen.soyad = "Uzun";
+            ogretmen.uni = "ITU";
+            ogretmen.brans = "Matematik";
+            ogretmen.Yazdir();
+            */
+            #endregion
+
             Console.ReadKey();
         }
     }
