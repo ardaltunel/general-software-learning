@@ -1996,6 +1996,93 @@ namespace ogren
             */
             #endregion
 
+            #region Enum
+            // String ifadelerle sayısal karşılaştırma ta da farklı işlemlerin gerektiği durumlarda
+            // yazılımcılar için dahada okunabilirlik sağlayan ve gelecekte anlaşılmasını zorlaştıran kod
+            // karmaşasını azaltmayı sağlayan yardımcı bir kod yapısıdır
+
+            // static void Main(string[] args) kısmının dışına yazılır
+            /*
+            enum HaftaninGunleri
+            {
+                Pazartesi = 1,
+                Sali,
+                Çarşamba,
+                Perşembe,
+                Cuma,
+                Cumartesi,
+                Pazar
+            }
+
+            enum Departmanlar 
+            {
+                SatısPersoneli = 56,
+                InsanKaynaklari = 200,
+                PazarlamaMuduru = 80
+            }
+            */
+
+            // 1. Örnek
+            /*
+            HaftaninGunleri bugun = HaftaninGunleri.Pazartesi;
+            Console.WriteLine("Bugün Günkerden: " + bugun);
+            */
+
+            // 2. Örmek
+            /*
+            Console.Write("Departman Numarasını Giriniz: ");
+            int departmanNo = int.Parse(Console.ReadLine());
+            switch (departmanNo)
+            {
+                case (int)Departmanlar.SatisPersoneli:
+                    Console.WriteLine("Satış Departmanına Hoşgeldiniz");
+                    break;
+                case (int)Departmanlar.PazarlamaMuduru:
+                    Console.WriteLine("Pazarlama Departmanına Hoşgeldiniz");
+                    break;
+                case (int)Departmanlar.InsanKaynaklari:
+                    Console.WriteLine(Departmanlar.InsanKaynaklari.ToString());
+                    break;
+                default:
+                    Console.WriteLine("Bu Numaraya Kayıtlı Bir Departman Bulunamadı");
+                    break;
+            }
+            */
+            #endregion
+
+            #region DateTime
+            // DateTime sınıfı içerisinde zanab bilgisini tutan ve bu zaman bilgilerini
+            // belirten formatlar ile ulaşabildiğimiz bir class yapısıdır
+            /*
+            DateTime time = DateTime.Now;
+            Console.WriteLine("Şimdiki Zaman: " + time);
+            Console.WriteLine("Tarih Bilgisi: " +time.Date);
+            Console.WriteLine("Gün Bilgisi: " +time.Day);
+            Console.WriteLine("Ay Bilgisi: " +time.Month);
+            Console.WriteLine("Yıl Bilgisi: " +time.Year);
+            Console.WriteLine("Saat Bilgisi: " +time.Hour);
+            Console.WriteLine("Dakika Bilgisi: " +time.Minute);
+            Console.WriteLine("Saniye Bilgisi: " +time.Second);
+            Console.WriteLine("Milisaniye Bilgisi: " +time.Millisecond);
+            Console.WriteLine("Haftanın Günü: " +time.DayOfWeek);
+            Console.WriteLine("Yılın Kaçıncı Günü: " +time.DayOfYear);
+            */
+            #endregion
+
+            #region Linq
+            // Linq sorgulama yöntemi .Net Framework 3.5 ile birlikle gelen bir teknolojidir
+            // Linq yöntemi ile kolekiyonlar ieçerisindeki verileri filteleyebilir sıralayabilir gruplandırabilirsiz
+            /*
+            List<string> sehirler = new List<string>() { 
+                "İstanbul", "İzmir" ,"Manisa","Adıyaman","Edirne","Sivas","Bursa","Antalya","Tokat" 
+            };
+            var liste = from s in sehirler select s;
+            foreach (var item in liste) {
+                Console.WriteLine(item);
+            }
+            */
+            #endregion
+
             Console.ReadKey();
         }
     }
