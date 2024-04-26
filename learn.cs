@@ -2088,6 +2088,53 @@ namespace ogren
             */
             #endregion
 
+            #region Linq Örnek
+            /*    
+            List<int> sayilar = new List<int>() {
+                25,6,38,456,2,63,754,45,67,-5,-874,-5,3
+            };
+            */
+            
+            // koleksiyon içerisindeki veirleri linq yöntemi ile çekip ekrana yazdıralım
+            /*
+            var list = from s in sayilar select s;
+            foreach (var item in list)  {
+                Console.Write(item+ " ");
+            }
+            */
+            
+            // koleksiyon içerisindeki verileri küçükten büyüğe doğru sıralı bir şekilde yazdıralım
+            /*
+            var kbSayilar = from s in sayilar orderby s ascending select s;
+            foreach (var item in kbSayilar) {
+                Console.Write(item + " ");
+            }
+            */
+
+            // koleksiyon içerisindeki verilerden 3'e bölünebilenleri ekrana yazdıralım
+            /*
+            var bolunen3 = from sayi in sayilar where sayi % 3 == 0 select sayi;
+            foreach (var item in bolunen3) {
+                Console.Write(item + " ");
+            }
+            */
+
+            // koleksiyon içerisindeki verilerden 4'e bölünüp 7'ye bölünemeyen sayıları büyükten küçüğe doğru yazdıralım
+            /*
+            var bolunen4 = from sayi in sayilar where sayi % 4 == 0 where sayi % 7 !=0 orderby sayi descending select sayi;
+            foreach(var item in bolunen4) {
+                Console.Write(item + " ");
+            }
+            */
+
+            // koleksiyon içerisindeki verilerden 2'ye tam bölünebilen sayıların en büyüğünü ve en küçüğünü ekrana yazdıralım
+            /*
+            var bolunenSayi = (from s in sayilar where s % 2 == 0 orderby s ascending select s).ToList();
+            Console.WriteLine("En Küçük Sayı = " + bolunenSayi[0]);
+            Console.WriteLine("En Büyük Sayı = " + bolunenSayi[bolunenSayi.Count-1]  );    
+            */
+            #endregion    
+
             Console.ReadKey();
         }
     }
