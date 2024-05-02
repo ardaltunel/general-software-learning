@@ -4,6 +4,5 @@
 - Start writing your code and start learning
 
 # How to setup? (SQL)
-- Install to `SQL Server 2022 Developer` (download the latest version)
-- Download and install `SSMS`
+- Install to `SQL Server 2022 Developer` and `SSMS` (download the latest version)
 - We will use the file `Northwind_Script.sql` for examples, don't forget to include it
