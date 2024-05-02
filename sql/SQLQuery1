@@ -1,0 +1,127 @@
+/*
+Like komutu where sorgulaması içerisinde belirtilmiş kolonda benzer metin var mı yok mu sorgulaması yapmamızı sağlar
+Sorgulama işleminde sadece metinsel değerler kullanılabilir
+% operatörü aracılığı ile sorgulama sağlanır
+Birkaç farklı sorgulama yöntemi vardır
+'a%' => % operatöründen önce metinsel ifade belirtilirse , belirtilen metin ile başlayan sorguları getirir
+'%a%' => iki % operatörü arasında metin yazılırsa o metin içerisinde herhangi bir yerde belirtilen metin varsa sorguyu getirir
+'%a' => belirtilen metinden önce % operatörü kullanılırsa , belirtilen metin ile biten sorguları getirir
+*/
+
+-- Syntax
+-- Select <Kolon'lar> From <Tablo> Where <kolon> like <sorgu>
+
+-- Örnek
+-- Firma adı a harfi ile başlayan müşterileri listeleyelim
+-- select * from Customers where CompanyName like 'a%'
+
+-- Firma adında market kelimesi geçen müşterileri listeleyelim
+-- select CompanyName,ContactName from Customers where CompanyName like '%market%'
+
+--Ürün adı C ile başlayan ürünleri alfabetik sıra ile listeleyelim
+-- select ProductName from Products where ProductName like 'c%' order by ProductName asc
+
+-- Manager ünvanına sahip firma yetkililerini listeleyelim
+-- select Title,FirstName from Employees where Title like '%manager%'
+
+/*
+In
+Bir sorgu içerisinde bir kolonda birden fazla eşitlik sağlaması yaparak filtreleme işlemi uygulanacak ise in komutunu kullanabiliriz
+Sadece where içerisinde kullanılabilir
+Sayısal ve metinsel ifadeler için kullanılır
+*/
+
+-- Syntax
+-- Select <Kolon'lar> From<Tablo> Where <kolon> in (değer1,değer2,değer3,....)
+
+-- Örnek
+-- Ülkesi Germany ve Mexico olan müşterileri listeleyelim
+-- Select Country from Customers where Country in ('Germany','Mexico')
+
+-- Ünvanı owner ve sales agent olan müşterileri listeleyelim
+-- select CompanyName,ContactName,ContactTitle from Customers where ContactTitle in ('Owner','Sales Agent')
+
+-- Ülkesi UK , USA ve Brazil olmayan müşterileri listeleyelim
+-- select CompanyName,Country from Customers where Country not in ('Uk','usa','brazil') order by Country
+
+-- Between
+-- Sql sorgu dili içerisinde tablo içerisindeki bir kolonda aralık belirterek sorgulama yapmak istediğinizde between komutunu kullanırız
+-- Sadece where işleminde sayısal değerler için kullanılır
+
+-- Syntax
+-- Select <Kolon'lar> From <Tablo> where <kolon> between <deger1> and <deger2>
+
+-- Örnek
+-- Fiyatı 30$ ile 50$ arasında olan ürünleri listeleyelim
+-- select ProductName,UnitPrice from Products where UnitPrice between 30 and 50 order by UnitPrice asc
+
+-- Aggregate Functions (Hazır Fonksiyonlar)
+-- Sql sorgu dili içerisinde tüm programlama dillerinde olduğu gibi hazır fonksiyonlar vardır
+-- Bunlardan en sık kullanılanları örnek ile beraber işleyelim
+
+-- Count
+-- Sql içerisinde bir tabloda kolona bağlı olarak o veriden kaç adet veri var ise bilgisini sayısal ifade olarak geri döndürür
+
+-- Syntax
+-- Select Count(<kolon>) from <tablo>
+
+-- Örnek
+-- Kaç adet müşterim var ?
+-- select count(CustomerID) as Toplam from Customers
+
+-- DISTINCT
+-- Bir sorgu içerisindeki verileri belirtilen kolon adına göre kendini tekrarlayan veriler var ise bu verileri süzer ve tek veri halinde listeler
+
+-- Syntax
+-- Select Distinct(<kolon>) from <tablo>
+
+-- Örnek
+-- Hangi ülkelere ihracat yapıyorum ?
+-- select distinct(Country) from Customers
+
+/*
+TOP x
+Sql sorgusu içerisinde kaç adet veri listelemek istediğimiz belirttiğimiz bir fonksiyondur
+Top fonksiyonunda parantez bulunmaz
+Top ifadesinden sonra sayı türünden listelemek istediğiniz veri sayısını yazmanız gerekmektedir
+Sadece select ifadesi içerisinde kullanılabilir
+*/
+
+-- Syntax
+-- Select TOP <x> from <Tablo>
+
+-- Örnek
+-- İlk 5 müşteriyi listeleyelim
+-- Select TOP 5 * from Customers
+
+-- Fiyatı en pahalı olan 5 ürünü listeleyelim
+-- select top 5 UnitPrice,ProductName from Products
+-- order by UnitPrice desc
+
+-- Kargo ücreti 15'den büyük , fiyatı en ucuz olan 10 siparişi listeleyelim
+-- select top 10 CustomerID,Freight from Orders where Freight > 15 order by Freight asc
+
+-- Sum
+-- Sql sorgusu içerisinde belirtilen sayısal kolonun toplam değerini verir
+-- Geriye ondalıklı değer döndürür
+
+-- Syntax
+-- Select SUM(<kolon>) from <tablo>
+
+-- Örnek
+-- Müşterilerin ödediği toplam kargo ücreti
+-- select sum(Freight) as [Total Freight] from Orders
+
+-- Elimde toplam ne kadarlık satış yapmışım
+-- select sum((UnitPrice * Quantity)*(1-Discount)) as TotalOrder from [Order Details]
+
+-- AVG
+-- Sorgu içerisinde belirtilen kolonun ortalamasını hesaplar
+-- Sadece sayısal verilerde kullanılır
+
+-- Syntax
+-- Select AVG(<Kolon>) from <tablo>
+
+-- Örnek
+-- Ürünlerimin ortalama fiyatı ne kadardır ?
+-- select AVG(UnitPrice) as AveragePrice from Products
