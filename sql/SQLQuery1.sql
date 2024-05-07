@@ -191,7 +191,11 @@ Sadece select ifadesi içerisinde kullanılabilir
 
 -- Örnek
 -- Ürünlerimin ortalama fiyatı ne kadardır ?
--- select AVG(UnitPrice) as AveragePrice from Products
+/*
+select 
+	AVG(UnitPrice) as AveragePrice 
+from Products
+*/
 
 -- Max
 -- Sql sorgusu içerisinde balirtilen kolonun maksimum değerini verir
@@ -202,7 +206,11 @@ Sadece select ifadesi içerisinde kullanılabilir
 
 -- Örnek
 -- En pahalı kagro ücreti ne kadardır
--- select max(Freight) as MaxFreight from Orders
+/*
+select 
+	max(Freight) as MaxFreight 
+from Orders
+*/
 
 -- Min
 -- Sql sorgu içerisinde belirtilen kolonunn minumum değerini verir
@@ -213,7 +221,11 @@ Sadece select ifadesi içerisinde kullanılabilir
 
 -- Örnek
 -- En ucuz ürün fiyatı ne kadardır
--- select min(UnitPrice) as MinPrice from Products
+/*
+select 
+	min(UnitPrice) as MinPrice 
+from Products
+*/
 
 -- Len
 -- Sql sorgusu içerisinde belirtilen kolonun metinsel karakter uzunlugu sayı türünde geri döndürür
@@ -223,7 +235,11 @@ Sadece select ifadesi içerisinde kullanılabilir
 -- select len('Merhaba SQL') as uzunluk
 
 -- En uzun adı olan firmanın karakter sayısı
--- select max(len(CompanyName)) as EnUzunFrimaAdi from Customers
+/*
+select 
+	max(len(CompanyName)) as EnUzunFrimaAdi 
+from Customers
+*/
 
 -- GETDATE()
 -- GETDATE() fonksiyonu şuanki zamanı bize yyyy-MM-dd HH:mm:ss tipinde geri döndürür
@@ -277,4 +293,37 @@ select
 	where c.CategoryID = p.CategoryID
 	) as Categories
 from Products as p
+*/
+
+-- Örnek
+-- Çalışanlarımı rapor vereceği kişiler ile birlikte listeleyelim
+/*
+select 
+	(c.FirstName + ' ' + c.LastName) as FullName,
+	(
+		select
+			(r.FirstName + ' ' + r.LastName) as ReportsTo
+		from Employees as r
+		where r.EmployeeID = c.ReportsTo
+	)
+from Employees as c
+*/
+
+
+-- Ürünlerimi Categori adı ve tedarikçi frima isimleri ile beraber listeleyelim
+-- (produsts, categories, suppliers tabloları) (catergortyname, productname, companyname)
+/*
+select
+	ProductName,
+	(
+		select CategoryName
+		from Categories
+		where Categories.CategoryID = Products.CategoryID
+	) as CategoryName,
+	(
+		select CompanyName
+		from Suppliers
+		where Suppliers.SupplierID = Products.SupplierID
+	) as CompanyName
+from Products
 */
