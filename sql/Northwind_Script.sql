@@ -1,3 +1,6 @@
+/* <-- DELETE
+
+
 USE [master]
 GO
 /****** Object:  Database [NORTHWND]    Script Date: 2.11.2019 14:07:31 ******/
