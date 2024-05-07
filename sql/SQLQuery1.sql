@@ -192,3 +192,89 @@ Sadece select ifadesi içerisinde kullanılabilir
 -- Örnek
 -- Ürünlerimin ortalama fiyatı ne kadardır ?
 -- select AVG(UnitPrice) as AveragePrice from Products
+
+-- Max
+-- Sql sorgusu içerisinde balirtilen kolonun maksimum değerini verir
+-- Sadece sayısal kolonlarda kullanılabilir
+
+-- Syntax
+-- Select Max(<kolon>) from <tablo>
+
+-- Örnek
+-- En pahalı kagro ücreti ne kadardır
+-- select max(Freight) as MaxFreight from Orders
+
+-- Min
+-- Sql sorgu içerisinde belirtilen kolonunn minumum değerini verir
+-- Sadece sayısal kolonlarda kullanılabilir
+
+-- Syntax
+-- Select Min(<kolon>) from <tablo>
+
+-- Örnek
+-- En ucuz ürün fiyatı ne kadardır
+-- select min(UnitPrice) as MinPrice from Products
+
+-- Len
+-- Sql sorgusu içerisinde belirtilen kolonun metinsel karakter uzunlugu sayı türünde geri döndürür
+
+-- Örnek
+-- 'Merhaba SQL' yazısını karakter uzunlugunu hesaplayalım
+-- select len('Merhaba SQL') as uzunluk
+
+-- En uzun adı olan firmanın karakter sayısı
+-- select max(len(CompanyName)) as EnUzunFrimaAdi from Customers
+
+-- GETDATE()
+-- GETDATE() fonksiyonu şuanki zamanı bize yyyy-MM-dd HH:mm:ss tipinde geri döndürür
+
+-- YEAR(<kolon>)
+-- YEAR(<kolon>) fonksiyonu içerisinde belirtilmiş olan tarih bilgisinin yıl değerini geriye döndürür
+-- yıl bilgisini yyyy formatında geri döner
+
+-- Örnek
+-- 2024-05-07 tarihinin yıl bilgisini geriye döndirelim
+-- select YEAR('2024-05-07')
+
+-- Örnek
+/*
+select 
+	FirstName, 
+	LastName, 
+	YEAR(HireDate) as HireDate 
+from Employees 
+order by HireDate asc
+*/
+
+-- Örnek
+/*
+select 
+	FirstName, 
+	LastName, 
+	YEAR(GETDATE())-YEAR(BirthDate) as Age 
+from Employees 
+order by Age asc
+*/
+
+-- Örnek
+-- Fiyatı en yüksek olan ürünümün kategori bilgisi nedir
+/*
+select CategoryName 
+from Categories 
+where CategoryID = (select top 1 CategoryID from Products order by UnitPrice desc)
+*/
+
+-- Ürünlerimi kategori isimleri ile beraber listeleyelim
+-- Tablolara takma isim vererek erişim
+/*
+select 
+	p.ProductName, 
+	p.UnitPrice, 
+	(
+	select 
+		c.CategoryName 
+	from Categories as c 
+	where c.CategoryID = p.CategoryID
+	) as Categories
+from Products as p
+*/
