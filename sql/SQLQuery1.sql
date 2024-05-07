@@ -16,7 +16,9 @@ Büyük çaplı projelerde performans sorunu yaşatabilir
 Select * from Customers
 
 -- Employees tablosu içerisindeki FirstName-LastName-Title kolonlarını listeleyim
-Select FirstName,LastName,Title from Employees
+Select 
+	FirstName,LastName,Title 
+from Employees
 
 /*
 Where komutu select sorgusu içerisinde filtreleme işlemerini uygulamak için bir komuttur
@@ -25,22 +27,53 @@ Koşul uygulama işlemi eslasında karşılaştırma operatörleri ve mantıksal
 */
 
 -- ContactTitle bilgisi Owner olan müşterileri işteyelim
-Select CompanyName,ContactName,ContactTitle From Customers Where ContactTitle='Owner'
+Select 
+	CompanyName,
+	ContactName,
+	ContactTitle 
+From Customers 
+Where ContactTitle='Owner'
 
 -- Ülkesi mexico veya germany olan müşterileri listeleyeim (customners tablosu) (contry kolonu)
-Select ContactName,ContactTitle,Country From Customers Where Country='Germany' or Country='Mexico'
+Select 
+	ContactName,
+	ContactTitle,
+	Country 
+From Customers 
+Where Country='Germany' or Country='Mexico'
 
 -- London şehrinde yaşayan çalışanları listeleyim
-Select FirstName,LastName,City From Employees Where City='London'
+Select 
+	FirstName,
+	LastName,
+	City 
+From Employees 
+Where City='London'
 
 -- Ürün fiyatı 100$ ve üzeri olan ürünleri listeleyelim
-Select ProductName,SupplierID,QuantityPerUnit,UnitPrice From Products Where UnitPrice >= 100
+Select 
+	ProductName,
+	SupplierID,
+	QuantityPerUnit,
+	UnitPrice 
+From Products 
+Where UnitPrice >= 100
 
 -- Fax bilgisi boş olan müşterileri listeleyelim
-Select CompanyName,ContactTitle,Fax From Customers Where Fax is null
+Select 
+	CompanyName,
+	ContactTitle,
+	Fax 
+From Customers 
+Where Fax is null
 
 -- Fax bilgisi boş olmayan müşterileri listeleyelim
-Select CompanyName,ContactTitle,Fax From Customers Where Fax is not null
+Select 
+	CompanyName,
+	ContactTitle,
+	Fax 
+From Customers 
+Where Fax is not null
 
 /*
 Order By komutu sorgulama işlemleri yazıldıktan sonra verileri sırlamanızı sağlayan bir komut sistemidir
@@ -51,16 +84,32 @@ DESC => büyükten küçüğe
 */
 
 -- Örnek
-select CategoryName from Categories order by CategoryName asc
+select 
+	CategoryName 
+from Categories 
+order by CategoryName asc
 
 -- Ürünüleri fiyat bilgine göre küçükten büyüğe doğru sırayalayım
-select ProductName,UnitPrice from Products order by UnitPrice asc
+select 
+	ProductName,
+	UnitPrice 
+from Products 
+order by UnitPrice asc
 
 -- Çalışanların ünvan kısaltması ve ad bilgilerine göre küçükten büyüğe sıralayın
-select TitleOfCourtesy,FirstName from Employees order by TitleOfCourtesy,FirstName asc
+select 
+	TitleOfCourtesy,
+	FirstName 
+from Employees 
+order by TitleOfCourtesy,FirstName asc
 
 -- Ülkesi Germany olan müşterileri contactnameine göre afacbetic olarak sıralayalım
-select ContactName,Country from Customers Where Country='Germany' order by ContactName asc
+select 
+	ContactName,
+	Country 
+from Customers 
+Where Country='Germany' 
+order by ContactName asc
 
 /*
 Like komutu where sorgulaması içerisinde belirtilmiş kolonda benzer metin var mı yok mu sorgulaması yapmamızı sağlar
@@ -74,16 +123,29 @@ Birkaç farklı sorgulama yöntemi vardır
 
 -- Örnek
 -- Firma adı a harfi ile başlayan müşterileri listeleyelim
-select * from Customers where CompanyName like 'a%'
+select * 
+from Customers
+where CompanyName like 'a%'
 
 -- Firma adında market kelimesi geçen müşterileri listeleyelim
-select CompanyName,ContactName from Customers where CompanyName like '%market%'
+select 
+	CompanyName,
+	ContactName 
+from Customers 
+where CompanyName like '%market%'
 
 --Ürün adı C ile başlayan ürünleri alfabetik sıra ile listeleyelim
-select ProductName from Products where ProductName like 'c%' order by ProductName asc
+select ProductName 
+from Products
+where ProductName like 'c%' 
+order by ProductName asc
 
 -- Manager ünvanına sahip firma yetkililerini listeleyelim
-select Title,FirstName from Employees where Title like '%manager%'
+select 
+	Title,
+	FirstName 
+from Employees 
+where Title like '%manager%'
 
 /*
 In
@@ -94,13 +156,26 @@ Sayısal ve metinsel ifadeler için kullanılır
 
 -- Örnek
 -- Ülkesi Germany ve Mexico olan müşterileri listeleyelim
-Select Country from Customers where Country in ('Germany','Mexico')
+Select 
+	Country
+from Customers
+where Country in ('Germany','Mexico')
 
 -- Ünvanı owner ve sales agent olan müşterileri listeleyelim
-select CompanyName,ContactName,ContactTitle from Customers where ContactTitle in ('Owner','Sales Agent')
+select 
+	CompanyName,
+	ContactName,
+	ContactTitle 
+from Customers
+where ContactTitle in ('Owner','Sales Agent')
 
 -- Ülkesi UK , USA ve Brazil olmayan müşterileri listeleyelim
-select CompanyName,Country from Customers where Country not in ('Uk','usa','brazil') order by Country
+select 
+	CompanyName,
+	Country 
+from Customers
+where Country not in ('Uk','usa','brazil')
+order by Country
 
 /*
 Between
@@ -110,7 +185,12 @@ Sadece where işleminde sayısal değerler için kullanılır
 
 -- Örnek
 -- Fiyatı 30$ ile 50$ arasında olan ürünleri listeleyelim
-select ProductName,UnitPrice from Products where UnitPrice between 30 and 50 order by UnitPrice asc
+select 
+	ProductName,
+	UnitPrice
+from Products 
+where UnitPrice between 30 and 50 
+order by UnitPrice asc
 
 /*
 Aggregate Functions (Hazır Fonksiyonlar)
@@ -123,14 +203,16 @@ Bunlardan en sık kullanılanları örnek ile beraber işleyelim
 
 -- Örnek
 -- Kaç adet müşterim var ?
-select count(CustomerID) as Toplam from Customers
+select count(CustomerID) as Toplam 
+from Customers
 
 -- DISTINCT
 -- Bir sorgu içerisindeki verileri belirtilen kolon adına göre kendini tekrarlayan veriler var ise bu verileri süzer ve tek veri halinde listeler
 
 -- Örnek
 -- Hangi ülkelere ihracat yapıyorum ?
-select distinct(Country) from Customers
+select distinct(Country) 
+from Customers
 
 /*
 TOP x
@@ -142,7 +224,8 @@ Sadece select ifadesi içerisinde kullanılabilir
 
 -- Örnek
 -- İlk 5 müşteriyi listeleyelim
-Select TOP 5 * from Customers
+Select TOP 5 * 
+from Customers
 
 -- Fiyatı en pahalı olan 5 ürünü listeleyelim
 select top 5 UnitPrice,ProductName 
@@ -163,10 +246,12 @@ Geriye ondalıklı değer döndürür
 
 -- Örnek
 -- Müşterilerin ödediği toplam kargo ücreti
-select sum(Freight) as [Total Freight] from Orders
+select sum(Freight) as [Total Freight] 
+from Orders
 
 -- Elimde toplam ne kadarlık satış yapmışım
-select sum((UnitPrice * Quantity)*(1-Discount)) as TotalOrder from [Order Details]
+select sum((UnitPrice * Quantity)*(1-Discount)) as TotalOrder
+from [Order Details]
 
 /*
 AVG
