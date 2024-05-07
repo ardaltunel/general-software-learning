@@ -1,3 +1,70 @@
+-- Komut yourumu yazmak için kullanılır
+-- SQL komutları execute(derleme) edildiği anda işleme alınmaz
+
+-- Select
+-- Select sorgusu bir veritabanı içersininde bulunan tabloların içerisinde kayıtlı olan verileri listelemenizi sağlar
+
+-- Syntax
+-- Select <KolonAdı / KolonAdlari> Form <Tablo>
+
+-- Örnek
+-- Select CompanyName from Customers
+
+-- Bir tablo içerisindeki tüm kolonları listelemek isterseniz * işareti ile sorgulama işlemi yapılabilir
+-- Yanlız zorunlu kalınmadığı taktirde kullanılması gerekmektedir
+-- Büyük çaplı projelerde performans sorunu yaşatabilir
+
+-- Örnek
+-- Select * from Customers
+
+-- Employees tablosu içerisindeki FirstName-LastName-Title kolonlarını listeleyim
+-- Select FirstName,LastName,Title from Employees
+
+-- Where
+-- Where komutu select sorgusu içerisinde filtreleme işlemerini uygulamak için bir komuttur
+-- Where komutu işleminden sonra bir koşul işlemi uygulanır
+-- Koşul uygulama işlemi eslasında karşılaştırma operatörleri ve mantıksal operatörler kullanılır
+
+-- Syntax
+-- Select <Kolon> From <Tablo> Where <Koşul>
+
+-- ContactTitle bilgisi Owner olan müşterileri işteyelim
+-- Select CompanyName,ContactName,ContactTitle From Customers Where ContactTitle='Owner'
+
+-- Ülkesi mexico veya germany olan müşterileri listeleyeim (customners tablosu) (contry kolonu)
+-- Select ContactName,ContactTitle,Country From Customers Where Country='Germany' or Country='Mexico'
+
+-- London şehrinde yaşayan çalışanları listeleyim
+-- Select FirstName,LastName,City From Employees Where City='London'
+
+-- Ürün fiyatı 100$ ve üzeri olan ürünleri listeleyelim
+-- Select ProductName,SupplierID,QuantityPerUnit,UnitPrice From Products Where UnitPrice >= 100
+
+-- Fax bilgisi boş olan müşterileri listeleyelim
+-- Select CompanyName,ContactTitle,Fax From Customers Where Fax is null
+
+-- Fax bilgisi boş olmayan müşterileri listeleyelim
+-- Select CompanyName,ContactTitle,Fax From Customers Where Fax is not null
+
+-- Order By
+-- Order By komutu sorgulama işlemleri yazıldıktan sonra verileri sırlamanızı sağlayan bir komut sistemidir
+-- Order By komutundan sonra herhanbi klona bağlı kalarak işlem yapcaksanız o klonu belirtmeniz gerekmetedir
+-- Sıralama işlemerli iki şekilde yapılabilir
+-- ASC => küçükten büyüğe
+-- DESC => büyükten küçüğe
+
+-- Örnek
+-- select CategoryName from Categories order by CategoryName asc
+
+-- Ürünüleri fiyat bilgine göre küçükten büyüğe doğru sırayalayım
+-- select ProductName,UnitPrice from Products order by UnitPrice asc
+
+-- Çalışanların ünvan kısaltması ve ad bilgilerine göre küçükten büyüğe sıralayın
+-- select TitleOfCourtesy,FirstName from Employees order by TitleOfCourtesy,FirstName asc
+
+-- Ülkesi Germany olan müşterileri contactnameine göre afacbetic olarak sıralayalım
+-- select ContactName,Country from Customers Where Country='Germany' order by ContactName asc
+
 /*
 Like komutu where sorgulaması içerisinde belirtilmiş kolonda benzer metin var mı yok mu sorgulaması yapmamızı sağlar
 Sorgulama işleminde sadece metinsel değerler kullanılabilir
