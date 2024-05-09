@@ -361,7 +361,6 @@ select
 	)
 from Employees as c
 
-
 -- Ürünlerimi Categori adı ve tedarikçi frima isimleri ile beraber listeleyelim
 -- (produsts, categories, suppliers tabloları) (catergortyname, productname, companyname)
 select
@@ -377,3 +376,98 @@ select
 		where Suppliers.SupplierID = Products.SupplierID
 	) as CompanyName
 from Products
+
+/*	
+Group By
+Sql sorguları içerisinde bir kolona bağlı kalınarak verileri gruplama işlemi yapmamızı sağlar
+Genellikle Where ifadesi ile Order By arasında yazılır
+Gruplama işlemi yaptığımızda Select ifadesi içerisinde * ile tüm verileri listeleyemezsiniz
+Mutlaka gruplanan kolon ismini belirtmeniz gerekmektedir
+Diğer kolonları direkt olarak kullanamazsınız
+Hazır metodlar ile işlemleri yapıp listeleyebilirsiniz
+*/
+	
+-- Örnek
+-- Hangi kategoride kaç adet ürünüm var
+select
+	(
+		select
+			Categories.CategoryName
+		from Categories
+		where Categories.CategoryID = Products.CategoryID
+	) as CategoryName,
+	COUNT(Products.ProductID) as Amount
+from Products
+group by Products.CategoryID
+
+-- Hangi ürünümden kaç adet satın alınmış 
+-- Ürün adı ve adet bilgisi olarak listeleyelim
+-- (Order details , products) 
+select 
+	(
+	 select
+		 ProductName
+	 from Products
+	 where Products.ProductID = od.ProductID
+	) as ProductName,
+	sum(od.Quantity) as Amount
+from [Order Details] as od
+group by od.ProductID
+order by Amount asc
+
+-- Hangi tedarikçiden kaç çeşit ürün alıyorum
+-- Tedarikçi adı ve çeşit adet bilgisi olarak listeleyelim
+-- (Products , suppliers) (CompanyName)
+select
+	(
+		select
+			Suppliers.CompanyName
+		from Suppliers
+		where Suppliers.SupplierID = Products.SupplierID
+	) as CompanyName,
+	count(Products.ProductID) as Amount
+from Products
+group by Products.SupplierID
+
+-- Hangi ülkede kaç adet müşterim var
+-- Ülke adı ve müşteri sayısı olarak listeleyelim
+select
+	Country,
+	count(CustomerID) as Amount
+from Customers
+group by Country
+
+/*	
+Having
+Sql sorgusu içerisinde tablolarda bulunan verileri Where ifadesi ile sorgulama işlemini yapabiliyoruz
+Fakat Hazır fonksiyonlar aracılığı ile hesaplamış veriler ram üzerinde hesaplanan soyut değerler olduğundan dolayı bu değerleri filtreleme işlemlerini where ifadesi ile yapamıyoruz
+Bunun için Having ifadesini kullanıyoruz
+İşleyişi Where ifadesi ile birebir aynıdır
+
+Not: Having ifadesi GroupBy ifadesi var ise GroupBy ifadesinden sonra kullanılmalıdır
+*/
+
+-- Örnek 
+-- Hangi ürünümden toplam kaç adet satın alınmış ? Satılan ürünlerden toplam 500 ve üzeri olanları listeleyelim
+select
+	(
+		select	
+		ProductName
+		from Products
+		where Products.ProductID = [Order Details].ProductID
+	),
+	sum([Order Details].Quantity) as Amount
+from [Order Details]
+group by [Order Details].ProductID
+having sum([Order Details].Quantity) >=500
+order by Amount
+
+-- Örnek 
+-- Satış değeri 1500$ ve üzeri olan siparişleri listeleyelim
+select
+	OrderID,
+	sum((Quantity*UnitPrice)*(1-Discount)) as Price
+from [Order Details]
+group by OrderID
+having sum((Quantity*UnitPrice)*(1-Discount)) >=1500
+order by Price 
