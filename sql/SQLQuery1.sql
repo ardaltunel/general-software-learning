@@ -471,3 +471,123 @@ from [Order Details]
 group by OrderID
 having sum((Quantity*UnitPrice)*(1-Discount)) >=1500
 order by Price 
+
+-- CREATE DATABASE
+-- Yeni bir database oluşturmak için kullanılan bir komuttur
+-- 'CREATE DATABASE' komutundan sonra oluşturmak istediğiniz veritabanı adını değişken tnaımlama kurallarına bağlı kalarak yazmanız gerekmektedir
+Create Database Sinif301
+
+-- Use
+-- Sql programla dili içerisinde database seçimini yapmak için kullanılırız
+
+-- Create Table
+-- Bir veri tabanı üzerinde yeni bir tablo oluşturmak için kullanılır. Kendisine ait () bloğu vardır
+-- İçerisinde barındırılacak olan alanlar bu alan içerisinde kolonad, veritip ve özellikleri şeklinde tanımlanır
+-- Tablo içerisinde kolon ismi belirtirken yine değişken tanımlama kurallarına uyulması gerekmektedir
+
+-- Kolon => tablo içerisinde oluşturulacak kolonun adı
+-- VeriTipi => Kolon içerisinde hangi türden veri barındılıacak ise o veritipi yazılır
+-- Özellik => Kolona tanımlanack olan özellikleri tanımlayabiliriz , yazmak zorunda değiliz(Primary Key , Identitiy(n,n))
+-- KolonBilgisi=> 'Null' veya 'Not Null' değerinin alabildiği alandır.'Null' belirttiğimiz kolon içerisinde değer girme zorunluluğu yoktur.Herhangi bir bilgi girilmezse default olarak 'Null' değeri kabul edilir
+create table Ogrenciler
+(
+	Id int Primary Key Identity(1,1) Not Null,
+	Ad Nvarchar(50) not null,
+	Soyad Nvarchar(50) not null,
+	Adres Nvarchar(250),
+	DogumTarihi datetime,
+	Not1 tinyint not null,
+	Not2 tinyint
+
+)
+select *
+from Ogrenciler
+
+-- GO
+-- GO ifadesi sql komut satırları içerisinde birden fazla komut satırı var ise her satır arasında kullanılmalıdır
+-- GO ifadesi sayesinde bir tablo oluşturma işlemi veya CRUD işlemleri aşamasında bir üstteki satırın yaptığı işlemi tam anlamı ile bitirip daha sonra alt satıra geçmesini sağlar
+
+-- Örnek
+-- Stok adında bir database oluşturalım
+-- Database içerisinde Kategoriler ,Ürünler adında iki tane tablo olsun
+-- Kategoriler (ID(Pk),KategoriAdı,Aciklama)
+-- Ürünler (Id(pk), KategoriAdı,UrunAdı,Fiyat,StokMiktarı)
+Create Database Stok
+Go
+Use Stok
+Go
+Create Table Kategoriler
+(
+	ID int Primary Key Identity(1,1) not null,
+	KategoriAdi nvarchar(25) not null,
+	Aciklama nvarchar(255)
+)
+Go
+Create Table Urunler
+(
+	ID int Primary Key Identity(1,1) not null,
+	KategoriAdı Nvarchar(50) not null ,
+	UrunAdi nvarchar(50) not null,
+	Fiyat money Not null,
+	StokMiktari int not null
+
+)
+
+-- Insert
+-- Sql sorgu dili içerisinde bir tabloya kayıt ekleme işlemi için kullanılır
+-- Insert işlemi 'Into' komutu ile birlikte kullanılır
+-- INSERT INTO komutularını yazdıktan sonra işlem yapmak istediğiniz tablonun adı yazılır
+-- Sonrasında () parantez içerisinde değer eklemek istediğiniz kolon isimleri yazılır
+-- Daha sonra values komutu yazılarak tekrar () parantez içerisinde sırası ile eklemek istediğiniz değerler yazılır
+-- NOT: Insert işlemi yapılırken PK bilgisi ve değeri girilmez
+Insert into Ogrenciler (Ad , Soyad ,Adres,DogumTarihi,Not1) values ('Ahmet','KAÇAR','Kadıköy','2001-01-01',65)
+select * from Ogrenciler
+
+-- INNER JOIN , LEFT JOIN , RIGHT JOIN , FULL JOIN
+
+-- Joinler , birden fazla tabloyu birbirine bağlamak için kullanılan bir yöntemdir
+-- Joinler sayesinde ilişkilendirilmiş olan tabloları birbirleri ile bağlayıp sınırsız bir şekilde işlem yapabilirsiniz
+-- Tabloları bağlama bir kolonun PK(Primary Key) kolonu ile bir diğer tablonun FK(Foreign Key) kolonu birbirleriyle ilişkilendirimiş ise sağlanabilir
+-- Bu eşleştirme işlemine Diagram tablosundan ulaşabilirsiniz
+
+-- Inner Join
+-- Tabloda birleştirdiğimiz alana göre sadece eşleşen verileri getirir
+
+-- Left Join
+-- Join ifadesinin solunda kalan tablodaki tüm veriler , diğer tablodanun ise sadece ilgili alanlarını getirir.Diğer tablo eşleşmiyor ise NULL sonucu gelir
+
+-- Right Join
+-- Left join mantığında çalışır . 2.Tablodanun tüm verilerini getirir 1.tablonun eşleşen kısımları gelir
+
+-- Full Join
+-- Her iki tabloda da tüm kayıtlar gelir.Eşleşmeyen kayıtlar var ise NULL gelir
+
+-- Örnek
+-- Ürünlerimi kategori isimleriyle beraber listeleyelim
+-- (Categories tablosu , Products Tablosu)
+select
+	ProductName,
+	Categories.CategoryName
+from Products inner join Categories on Products.CategoryID=Categories.CategoryID
+
+-- Çalışanlarım ne kadarlık satış yapmış
+-- (employees , orders , order details)
+-- (Çalışan ad soyad , kazanç)
+select
+	(Employees.FirstName + ' ' +Employees.LastName) as FullName ,
+	Sum((od.Quantity *od.UnitPrice) * (1-od.Discount)) as TotalPrice
+from Employees 
+  inner join Orders on Employees.EmployeeID=Orders.EmployeeID
+  inner join [Order Details] as od on od.OrderID=Orders.OrderID
+  group by Employees.FirstName + ' ' +Employees.LastName
+
+-- Hangi kategoride kaç tane ürün satmışım
+-- (Categories , products , order details)
+select
+	CategoryName,
+	Sum(Quantity) as Amount
+from Categories
+  inner join Products on Categories.CategoryID =Products.CategoryID
+  inner join [Order Details] as od on od.ProductID =Products.ProductID
+  group by CategoryName
+  order by Amount
