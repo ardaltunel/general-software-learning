@@ -591,3 +591,295 @@ from Categories
   inner join [Order Details] as od on od.ProductID =Products.ProductID
   group by CategoryName
   order by Amount
+
+-- Datediff
+-- Tarih bilgisine bağlı olarak iki tarih arasındaki farkı bulmanızı sağlar
+-- Bu fonksiyonu kullanmak için 3 farklı parametreye ihtiyacınız vardır
+-- 1.Parametre => Tarih bilgisinin hangi kısmına bağlı kalarak hesaplama işlemi yapacağınızı belirtmeniz gerekir (Day,Month,Year)
+-- 2.Parametre =>Önce gelen tarih bilgisi
+-- 3.Parametre =>Sonra gelen tarih bilgisi
+
+-- Örnek
+-- İki tarih arasındaki farkı gün , ay , yıl şeklinde hesaplayalım
+-- Tarihler '2013-03-18' ile '2024-05-16' 
+Select DATEDIFF(Day,'2013-03-18','2024-05-16') as [Gün Farkı]
+Select DATEDIFF(Month,'2013-03-18','2024-05-16') as [Ay Farkı]
+Select DATEDIFF(Year,'2013-03-18','2024-05-16') as [Yıl Farkı]
+
+-- DELETE
+-- Bir tablodaki bir veya birden fazla satırı silmek için kullanılan bir komuttur
+-- Silme işlemi yaparken UPDATE işleminde olduğu gibi filtreleme işlemi yapmaya özen gösteriniz
+-- Aksi takdirde elinizdeki tüm verileri kaybedebilirsiniz
+
+-- Örnek
+-- Öğrenciler tablosunda Primary Key kolon bilgisi  2 olan öğrenciyi silelim
+Select * From Ogrenciler
+Delete Ogrenciler where Id=2
+
+-- Update
+-- Bir tablodaki veya birden fazla satırı güncelleme işlemi yapmak için kullandığımız komuttur
+-- Update komutunu kullanırken dikkatli olunması gerekmektedir
+-- Aksi takdirde tablo içerisindeki tüm kayıtları update edebiliriz.Mevcut kayıtları kaybedebiliriz
+-- Update işlemi yapılırken mutlaka Where ifadesi ile filtreleme yapınız.Bu sayede güncellemek istediğiniz satır veya satırlara nokta atışı şekinde ulaşabilirsiniz
+Use Sinif301
+Go
+Select * from Ogrenciler
+Update Ogrenciler
+Set Adres='Bakırköy'
+where Ad='Ahmet' and Soyad='Kaçar'
+
+-- Değişkenler
+-- Değişken en basit tanımı ile bir verinin saklanmasında kullanılan yapıdır
+-- Değişkenler sql sorgu dili içerisinde declare ifadesi ile tanımlanır
+-- Declare ifadesiniden sonra @ işareti eklenerek değişken adı yazılır ve sonra içerisinde barındıracağı veri tipi belirtilir
+-- Değişken isminin önüne @ işareti mutlaka eklemeniz gerekmektedir
+
+-- Örnek
+Declare @sayi int
+Declare @ad nvarchar(15)
+Declare @soyad nvarchar(25)
+Declare @n1 int , @n2 int ,@ortalama float
+
+-- Değikenlere Değer atama
+-- 'Set' veya 'Select' ifadesi kullanılarak değikenlere değer ataması yapılır
+Set @n1=60
+set @n2=55
+
+-- Print()
+-- Sql sorgu dili içerisinde ekrana bir değer yazdırmak için Print() fonksiyonu kullanılırız
+-- () parantez içerisine bir değer veya değişken belirttiğimizde o değer ekrana yazdırılır
+Print(@n1)
+Print(@n2)
+set @ortalama =(@n1 + @n2)/2
+Print(@ortalama)
+
+-- Select ifadesi ile değişkene değer atama işlemi
+
+-- Örnek
+-- En pahalı ürünün fiyatını @EnPahali değişkeni içerisine aktarıp ekrana yazdıralım
+Use NORTHWND
+Go
+Declare @EnPahali money
+Select
+	Top 1 @EnPahali = UnitPrice
+	From Products
+	Order By UnitPrice Desc
+
+select * from Products where UnitPrice=@EnPahali
+Print(@EnPahali)
+
+-- Exists
+-- Sql sorguları içerisinde belirtilen sorgu cümlesi sonucunha herhangi bir değer var mı sorusunu sorar
+-- Geriye 'bit' tipinde değer döndürür(0,1)
+
+-- Örnek
+-- Müşterimin içerisinde Turkiye ülkesine ait müşteri var mı?
+declare @country nvarchar(50)
+set @country='Germany'
+if exists(select * from Customers where Country=@country)
+	begin
+		Select * from Customers where Country=@country
+	end
+else
+	begin
+		Print(@country + ' ülkesi bulunamadı')
+	end
+
+-- If-Else
+-- Sql dilinde if-else yapısı belli bir koşula baplı kalarak sorgularınızı koşula bağlı olarak yönlendirmenizi sağlar
+-- İşlenecek komut satırları begin-end komutları içerisinde yazılır
+
+-- Örnek
+-- Tanımlanan 2 değişken içerisindeki sayıların hangisi büyük onu bulalım
+Declare @sayi1 int ,@sayi2 int
+Set @sayi1=15
+set @sayi2=30
+
+if(@sayi1 >@sayi2)
+	begin
+		print('Sayı 1 Büyüktür')
+	end
+else if (@sayi2 > @sayi1)
+	begin
+		print('Sayı 2 Büyüktür')
+	end
+else
+	begin
+		Print('Sayılar Eşittir')
+	end
+
+-- Ürünlerimin ortalama fiyatı 30$ dan düşükse 'Düşük Fiyat' değilse 'Yüksek Fiyat' diye ekrana yazı yazdıralım
+Declare @ortalama money
+select 
+	@ortalama =avg(UnitPrice)
+from Products
+
+if(@ortalama > 30)
+	begin
+		Print('Yüksek Fiyat')
+	end
+else
+	begin
+		Print('Düşük Fiyat')
+	end
+
+-- While
+-- Sql sorgu dilinde , C# programlama dilinde de olduğu gibi koşula bağlı olarak bazı sql sorgu komutlarını tekrarlatabilirsiniz
+-- While mekanizması koşul sonucu doğruluğu sağladığı sürece içerisinde kod bloğunu işleme alır
+
+-- Örnek
+-- 10'dan geriye doğru yazdıran bir while döngüsü yazalım
+declare @sayi int
+set @sayi=10
+while(@sayi >0)
+begin
+	print(@sayi)
+	set @sayi =@sayi-1
+end
+
+-- BREAK => break komutu döngü mekanizmasını sonlandırmak için kullanılır
+declare @sayac int
+set @sayac=1
+while(@sayac <10)
+begin
+	Print(@sayac)
+	if(@sayac=5)
+	begin
+			break
+	end
+	set @sayac=@sayac+1
+end
+
+-- Switch-Case
+-- Sql sorguları içerisinde switch-case mekanizmları ile karşılaştırma işlemleri yapabilirsiniz
+-- Switch-case mekanizmasını tek başına kullanabildiğiniz gibi 'Select' sorguları içerisinde de kullanabilirsiniz
+-- c# programlama dilinde olduğu gibi birebir eşitlik sağlamak zorunda değilsiniz .Komplike sorgular oluşturabilirsiniz ( < , > , >=, ....)
+
+-- Örnek
+-- @Not isminde bir değişken tanımlayalım . Not içerisindeki değere göre 100'lük sisteme göre aldığı notu ekrana yazdıralım
+declare @not int
+set @not=70
+
+Select 
+case
+	when @not <45 then
+		'Not : 1'
+	when @not <55 then
+		'Not : 2'
+	when @not <70 then
+		'Not : 3'
+	when @not <80 then
+		'Not : 4'
+	else
+		'Not : 5'
+	End as NotBilgisi
+
+-- Örnek 
+-- Çalışanlarım içerisinde 1992 yılında işe girenler 'Çok Eski Çalışan',1993 yılında işe girenlere 'Eski Çalışan',1994 yılında işe girenlere 'Yeni Çalışan' bilgileri ile çalışanları listeleyelim
+-- (Çalışan adı soyadı ,ünvanı, işe giriş tarihi , çalışan türü)
+select
+	(FirstName + ' '+LastName) as FuullName,
+	Title,
+	HireDate,
+	(
+	 case
+		when YEAR(HireDate) = 1992 Then
+			'Çok Eski Çalışan'
+		when Year(HireDate) = 1993 Then
+			'Eski Çalışan'
+		else
+			'Yeni Çalışan'
+		End
+	) as EmployeeType
+from Employees
+
+-- Örnek
+-- Ürünlerim içerisinde stok miktarı 20'nin altında olan ürünlere 'Stok Bitmek Üzere' , 50 nin altında olanlara 'Stokları Gözden Geçiriniz' ,diğerlerine ise 'Stokta sorun yok' bilgilerinin yazdığı bir kolon ile ürünleri stok miktarına göre listeleyelim
+-- (Kategori adı , tedarikçi adı , ürün adı , stok miktarı , stok bilgisi)
+-- (Products , categories , suppliers)
+select
+	Categories.CategoryName,
+	Suppliers.CompanyName,
+	ProductName,
+	UnitsInStock,
+	(
+		case
+			when UnitsInStock <20 then	'Stok Bitmek Üzere'
+			when UnitsInStock <50 then  'Stokları Gözden Geçir'
+			else 'Stokta Sorun Yok'
+			end	
+	) as UnitInStockInfo
+from Products 
+inner join Categories on Categories.CategoryID=Products.CategoryID
+inner join Suppliers on Products.SupplierID = Suppliers.SupplierID
+order by Products.UnitsInStock
+
+-- View
+-- View lar sorguları basitleştirmek , erişim izinlerini düzenlemek , farklı sunuculardaki eşdeğer verileri karşılaştırmak veya  bazı durumlar sorgu süresini kısaltmak için kullanılan , gerçekte olmayan select ifadeleri için tanımlanmış olan sanal tablolardır
+
+-- 3 farklı kullanımı vardır
+-- Create View
+-- Alter View
+-- Delete View
+
+-- Order By Kullanılmaz
+-- İsimsiz kolon bırakılmaz
+-- SubQuery yöntemi ile sorgulama işlemi yapılmaz
+-- Insert , Update ve Delete işlemi kullanamazsınız
+-- Herhangi bir parametre yollayamazsınız
+
+-- 1 -Create View
+--Yeni bir sanal tablo oluşturmak için kullanılır
+
+--Örnek
+--Alman müşterileri getiren bir View oluşturalım
+Use NORTHWND
+GO
+Create view AlmanMusteriler as
+select * from Customers Where Country='Germany'
+
+-- Oluşturduğumuz View'ları Database içerisindeki View klasörü altında listeleyebiliriz
+-- Oluşturulan Ciewları select etmek için standar select işlemi kullanılır
+Select * From AlmanMusteriler
+	
+-- Oluşturduğumuz View içerisinde ünvanı yönetici olanları listeleyelim
+Select
+	CompanyName,ContactName,ContactTitle
+from AlmanMusteriler
+	Where ContactTitle like '%manager%'
+	order by ContactName asc
+
+
+-- Alter View
+-- Oluşturulan tablo içerisindeki sql sorgusunu değiştirmek için kullanılır
+
+-- Örnek
+-- Alman Müşterileri view tablosunu güncelleyelim
+alter view AlmanMusteriler
+as
+	select
+	CustomerID,CompanyName,ContactName,ContactTitle,Country
+	from Customers
+	Where Country='Germany'
+		
+Select * From AlmanMusteriler
+
+-- 3-Drop View
+-- Mevcut View ı silmek için kullanılır
+
+Drop view AlmanMusteriler
+
+-- Örnek
+-- Ürün adı , Ürün Stok Bilgisi, Ürün Fiyatı , Kategori Adı ve Tedarikçi adını listeleyen bir view oluşturalım ve çağıralım
+create view Urunler
+as	
+Select
+	Products.ProductName,
+	Products.UnitsInStock,
+	Products.UnitPrice,
+	Categories.CategoryName,
+	Suppliers.CompanyName
+from Products
+Inner Join Categories on Products.CategoryID=Categories.CategoryID
+Inner Join Suppliers on Products.SupplierID=Suppliers.SupplierID
+Select * From Urunler
