@@ -883,3 +883,164 @@ from Products
 Inner Join Categories on Products.CategoryID=Categories.CategoryID
 Inner Join Suppliers on Products.SupplierID=Suppliers.SupplierID
 Select * From Urunler
+
+-- Store Procedure
+-- Store Procedure Sql sorgu dili içerisinde birden fazla işlemin tanımlandığı ve yazılma amacına göre geriye değer döndüren veya döndürmeyen objelerdir
+--SP ler isteğe bağlı olarak parametre alabilirler
+--Sp lerin içerisinde Insert,Update,Delete veya select işlemleri yapılabilir veya bu işlemlerin hepsini bir arada kullanabilirsiniz. Herhangi bir kısıtlaması bulunmamaktadır
+
+-- SP lerin dizayn açısından 3 farklı yöntem ile yönetebilirsiniz
+-- 1-Create Procedure
+-- 2-Alter Procedure
+-- 3-Drop Procedure
+
+-- 1-Create Procedure
+-- Yeni bir SP oluşturmak için
+
+-- Örnek
+-- Kategori bilgisine göre ürünleri listeleyen bir SP yazalım
+Create proc UrunleriListele (@catID int)
+as
+begin
+	Select * From Products where CategoryID=@catID
+end
+
+-- Oluşturulan SP'leri Database içerisinde Programmability içerisindeki Store Procedure dosyasından görebilirsiniz
+-- Oluşturalan Sp'leri 'Exec' veya 'Execute' komutları ile çalıştırabilirsiniz
+
+Execute UrunleriListele 3
+
+-- 2-Alter Procedure
+-- Oluşturulmuş olan Sp yi düzenlemek için kullanılır
+
+-- Örnek
+-- UrunleriLsitele sp sini  tedarikçiye göre filtreleme seçeneği ekleyelim
+
+alter proc UrunleriListele (@catID int ,@supID int) as
+begin
+ select * from Products
+ where CategoryID =@catID and SupplierID=@supID
+end
+
+
+Exec UrunleriListele 3,8
+
+-- 3-Drop Procedure
+-- Oluşturulmuş olan Sp ' yi siler
+
+Drop proc UrunleriListele
+
+-- Functions (Fonksiyonlar)
+-- Sql sorgu dili içerisinde , C# da olduğu gibi kendini tekrarlayan komut satırlarını bir paket sistemi haline getirmek için kullanılan yapılardır
+-- Sql sorgu dili içerisinde bir sorgu komutunu birden fazla kez kullanacak iesk fonksiyon mantığı kullanılır
+-- Böylece aynı sorguları birden fazla kez yazmak durumunda kalmazsınız
+
+-- Fonksiyonların , SP(Store Procedure)'lerden en büyük farkı sorgu içerisinde kullanılabilmektedir
+
+-- Fonksiyonlar geriye değer döndüren veya geri sorgu döndüren şeklinde ikiye ayrılır
+
+-- 1-Geriye değer döndüren fonksiyonlar
+
+-- Örnek 
+-- 2 Sayıyı toplayıp sonucu geriye döndüren bir fonksiyon yazalım
+
+create function fnTopla (@sayi1 int , @sayi2 int)
+returns int
+as begin
+	return (@sayi1+@sayi2)
+end
+
+-- Oluşturulan fonksiyonlar 'Select' ifadesi ile çağırılır
+-- Çağırma işleminden önce şema adı sonra fonksiyon adı yazılır
+
+Select dbo.fnTopla(5,3)  as Toplam
+
+-- 2- Geriye Sorgu döndüren fonksiyondur
+-- Kendi içerisinde bir işlemlere bağlı kalarak bir select sorgusu döndürebilirsiniz
+
+-- Örnek
+-- Müşteri ID bilgisine göre siparişleri listeleyen bir fonksiyon yazıp çağıralım
+
+create function MusteriyeGoreSiparis(@musteriID nvarchar(5))
+returns table
+as 
+	return
+	(
+		select * From Orders Where CustomerID=@musteriID
+	)
+
+-- MusteriId bilgisi 'FAMIA' olan siparişleri listeleyelim
+
+Select * From dbo.MusteriyeGoreSiparis('FAMIA')
+
+
+-- Alter Function
+-- Tarafınızdan oluşturulmuş olan fonksiyonları düzenlemek için kullanılan bir yapıdır.Fonksiyonun ismi hariç tüm işleyişini bir yapı ile değiştirebilirsiniz
+
+-- Örnek
+-- dbo.fnTopla fonksiyonun içeriğini değiştirelim
+alter function fnTopla(@s1 float,@s2 float,@s3 float)
+returns float
+as
+begin
+	return(@s1+@s2+@s3)
+end
+
+-- Güncellediğimiz fonksiyonu çağıralım
+select dbo.fnTopla(10.2,5.8,3.4) as Toplam
+
+-- Drop Function
+-- Oluşturulmuş fonksiyonu silmek için kullanılan bir yapıdır
+Drop Function dbo.fnTopla
+
+use master
+go
+create database Sinif301
+go
+
+
+USE [Sinif301]
+GO
+/****** Object:  Table [dbo].[Ogrenciler]    Script Date: 21.05.2024 20:32:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Ogrenciler](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Ad] [nvarchar](50) NOT NULL,
+	[Soyad] [nvarchar](50) NOT NULL,
+	[Adres] [nvarchar](250) NULL,
+	[DogumTarihi] [datetime] NULL,
+	[Not1] [tinyint] NOT NULL,
+	[Not2] [tinyint] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[Ogrenciler] ON 
+
+INSERT [dbo].[Ogrenciler] ([Id], [Ad], [Soyad], [Adres], [DogumTarihi], [Not1], [Not2]) VALUES (1, N'sa', N'sa', N'sa', NULL, 65, 65)
+SET IDENTITY_INSERT [dbo].[Ogrenciler] OFF
+
+-- Backup
+-- Sql dolu dili içerisinde komut satırı aracılığı ile veritabanı yedeğini alabilirsiniz
+-- yedek alma işleminde dosya adının '.bak' uzantısında olması gerekmektedir
+
+backup database Sinif301 to disk ='C:\Users\ardaltunel\Desktop\Yedek\TestDB_21052024.bak'
+
+-- Veritabanının diğer yedek alma yöntemi ise
+-- Veritabanına sağ tıklayıp
+-- =>Tasks
+-- => Generate Scripts
+-- => Next =>(Veritabanı içerisindeki yedeklenecek tabloları seçiyoruz) => Next
+-- => Bu sayfada advanced sekmesi içerisindeki (types of data to script ) bölümünden sadece şemalar , şemalar ve veriler  veya sadece veriler kısmında üçünden birini seçebilirsiniz
+-- SOn işlemler tamamlandıktan sonra oluşan dosyanın en üst kısmına komut olarak
+-- Use master
+--Go
+-- Create database <DatabaseAdı>
+--Go
+
+-- Yazılarak dosyalar hazır hale getirilir
