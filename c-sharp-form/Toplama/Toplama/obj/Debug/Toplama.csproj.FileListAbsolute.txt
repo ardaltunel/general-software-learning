@@ -1,0 +1,9 @@
+C:\Users\arifa\source\repos\Toplama\Toplama\bin\Debug\Toplama.exe.config
+C:\Users\arifa\source\repos\Toplama\Toplama\bin\Debug\Toplama.exe
+C:\Users\arifa\source\repos\Toplama\Toplama\bin\Debug\Toplama.pdb
+C:\Users\arifa\source\repos\Toplama\Toplama\obj\Debug\Toplama.csproj.AssemblyReference.cache
+C:\Users\arifa\source\repos\Toplama\Toplama\obj\Debug\Toplama.Properties.Resources.resources
+C:\Users\arifa\source\repos\Toplama\Toplama\obj\Debug\Toplama.csproj.GenerateResource.cache
+C:\Users\arifa\source\repos\Toplama\Toplama\obj\Debug\Toplama.csproj.CoreCompileInputs.cache
+C:\Users\arifa\source\repos\Toplama\Toplama\obj\Debug\Toplama.exe
+C:\Users\arifa\source\repos\Toplama\Toplama\obj\Debug\Toplama.pdb
