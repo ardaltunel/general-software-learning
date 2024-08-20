@@ -10,9 +10,5 @@
 - Install to `Visual Studio 2022` (download the latest version)
 - To create a project `Create New Project` > `Windows Forms Application (.NET Framework)`
 
-## How to setup? <a href="c-sharp-web">(C-Sharp-Web)</a>
-- Install to `Visual Studio 2022` (download the latest version)
-- To create a project `Create New Project` > `ASP.NET Web Application (.NET Framework)`
-
 ## License
 This project is licensed under the MIT License - see the <a href="LICENSE">LICENSE</a> file for details.
