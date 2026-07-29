@@ -1,6 +1,6 @@
 # General Software Learning
 
-Yazılım öğrenme sürecimde kullandığım örnek projeler, notlar ve temel eğitim içeriklerini içeren arşiv deposu.
+An archive repository containing sample projects, notes, and fundamental training materials that I used throughout my software learning journey.
 
 <p align="left">
   <img src="https://img.shields.io/badge/C%23-512BD4?style=for-the-badge&logo=csharp&logoColor=white">
@@ -9,110 +9,105 @@ Yazılım öğrenme sürecimde kullandığım örnek projeler, notlar ve temel e
   <img src="https://img.shields.io/badge/Windows_Forms-0078D6?style=for-the-badge&logo=windows&logoColor=white">
 </p>
 
-## İçerikler
+## Contents
 
-- C# Console örnekleri
-- C# Windows Forms örnekleri
-- SQL çalışmaları
-- Veritabanı örnekleri
-- Temel yazılım mantığı uygulamaları
+* C# Console examples
+* C# Windows Forms examples
+* SQL exercises
+* Database examples
+* Basic programming logic applications
 
-> Bu repository başlangıç seviyesindeki geliştiriciler için sade ve anlaşılır örnekler sunmayı amaçlamaktadır.
+> This repository aims to provide simple and easy-to-understand examples for beginner-level developers.
 
 ---
 
-# Kurulum
+# Installation
 
 ## C# Console
 
-📁 <a href="c-sharp-console">Klasör İçeriği</a>
+📁 <a href="c-sharp-console">View Folder Contents</a>
 
-### Gereksinimler
+### Requirements
 
-- Visual Studio 2022
-- .NET Framework
+* Visual Studio 2022
+* .NET Framework
 
-### Kurulum Adımları
+### Installation Steps
 
-1. Visual Studio 2022 kurulumunu tamamlayın.
-2. `Create New Project` seçeneğine tıklayın.
-3. `Console Application (.NET Framework)` projesini seçin.
-4. Örnek kodları projeye ekleyerek çalıştırın.
+1. Complete the Visual Studio 2022 installation.
+2. Click the `Create New Project` option.
+3. Select `Console Application (.NET Framework)`.
+4. Add the sample code to the project and run it.
 
 ---
 
 ## C# Windows Forms
 
-📁 <a href="c-sharp-form">Klasör İçeriği</a>
+📁 <a href="c-sharp-form">View Folder Contents</a>
 
-### Gereksinimler
+### Requirements
 
-- Visual Studio 2022
-- .NET Framework
+* Visual Studio 2022
+* .NET Framework
 
-### Kurulum Adımları
+### Installation Steps
 
-1. Visual Studio 2022 kurulumunu tamamlayın.
-2. `Create New Project` seçeneğine tıklayın.
-3. `Windows Forms Application (.NET Framework)` projesini seçin.
-4. Form örneklerini projeye ekleyerek çalıştırın.
+1. Complete the Visual Studio 2022 installation.
+2. Click the `Create New Project` option.
+3. Select `Windows Forms Application (.NET Framework)`.
+4. Add the form examples to the project and run them.
 
 ---
 
 ## SQL
 
-📁 <a href="sql">Klasör İçeriği</a>
+📁 <a href="sql">View Folder Contents</a>
 
-### Gereksinimler
+### Requirements
 
-- SQL Server 2022 Developer
-- SQL Server Management Studio (SSMS)
+* SQL Server 2022 Developer
+* SQL Server Management Studio (SSMS)
 
-### Veritabanı Kurulumu
+### Database Setup
 
-Örnekler için repository içerisinde bulunan:
+For the examples, we will use the following file located in the repository:
 
 <a href="sql/Northwind_Script">Northwind_Script</a>
 
-dosyasını kullanacağız.
+### Installation Steps
 
-### Kurulum Adımları
-
-1. SQL Server 2022 Developer sürümünü kurun.
-2. SSMS kurulumunu tamamlayın.
-3. Yeni bir veritabanı oluşturun.
-4. `Northwind_Script` dosyasını çalıştırın.
-5. SQL örneklerini kullanmaya başlayın.
+1. Install SQL Server 2022 Developer Edition.
+2. Complete the SSMS installation.
+3. Create a new database.
+4. Run the `Northwind_Script` file.
+5. Start using the SQL examples.
 
 ---
 
-# Öğrenme Konuları
+# Learning Topics
 
-- [x] C# Temelleri
-- [x] Döngüler
-- [x] Diziler
-- [x] SQL SELECT
-- [ ] JOIN Yapıları
-- [ ] Entity Framework
-
----
-
-# Repo Amacı
-
-Bu repository;
-
-- Temel yazılım mantığını öğretmek
-- C# pratiği yapmak
-- SQL öğrenmek
-- Örnek projeler üzerinden gelişmek
-
-amacıyla oluşturulmuştur.
+* [x] C# Fundamentals
+* [x] Loops
+* [x] Arrays
+* [x] SQL SELECT Queries
+* [ ] JOIN Operations
+* [ ] Entity Framework
 
 ---
 
-# Lisans
+# Repository Purpose
 
-Bu proje MIT lisansı ile lisanslanmıştır.
+This repository was created to:
 
-Detaylı bilgi için:
-<a href="LICENSE">LICENSE</a>
+* Learn fundamental programming concepts
+* Practice C#
+* Learn SQL
+* Improve through sample projects
+
+---
+
+# License
+
+This project is licensed under the MIT License.
+
+For more information, see the [LICENSE](LICENSE) file.
